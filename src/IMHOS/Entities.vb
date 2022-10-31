@@ -5,8 +5,8 @@
         children.Add(instance)
         Return id
     End Function
-    Function Read(id As Long)
-        Return children(id)
+    Function Read(id As Long) As Entity
+        Return children(CInt(id))
     End Function
     Sub Draw(spriteBatch As SpriteBatch)
         For Each child In children

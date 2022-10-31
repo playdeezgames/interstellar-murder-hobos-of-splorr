@@ -1,13 +1,12 @@
-﻿
-Public Class Sprite
+﻿Public Class Sprite
     Implements ISprite
-    Private textureRegion As TextureRegion
+    Private textureRegion As ITextureRegion
     Private origin As (Single, Single)
     Private scale As (Single, Single)
     Private effects As (Boolean, Boolean)
     Private layerDepth As Single
     Sub New(
-        textureRegion As TextureRegion,
+        textureRegion As ITextureRegion,
         origin As (Single, Single),
         scale As (Single, Single),
         effects As (Boolean, Boolean),
@@ -25,12 +24,12 @@ Public Class Sprite
             rotation As Single) Implements ISprite.Draw
         textureRegion.Draw(
             spriteBatch,
-            New Vector2(position.Item1, position.Item2),
-            New Color(color.Item1, color.Item2, color.Item3, color.Item4),
+            position,
+            color,
             rotation,
-            New Vector2(origin.Item1, origin.Item2),
-            New Vector2(scale.Item1, scale.Item2),
-            If(effects.Item1, SpriteEffects.FlipHorizontally, SpriteEffects.None) And If(effects.Item2, SpriteEffects.FlipVertically, SpriteEffects.None),
+            origin,
+            scale,
+            effects,
             layerDepth)
     End Sub
 End Class

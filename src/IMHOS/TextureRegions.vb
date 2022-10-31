@@ -13,7 +13,7 @@
             table(entry.Key) = New TextureRegion(textures.Read(entry.Value.Item1), entry.Value.Item2)
         Next
     End Sub
-    Function Read(textureRegionId As Long)
+    Function Read(textureRegionId As Long) As TextureRegion
         Return table(textureRegionId)
     End Function
 End Class
