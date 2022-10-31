@@ -5,6 +5,7 @@
     Private ReadOnly graphics As GraphicsDeviceManager
     Private shipSpriteInstance As SpriteInstance
     Private spriteBatch As SpriteBatch
+    Private textureRegions As TextureRegions
     Private sprites As Sprites
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
@@ -21,8 +22,8 @@
         MyBase.LoadContent()
         spriteBatch = New SpriteBatch(GraphicsDevice)
         Textures.Load(GraphicsDevice)
-        TextureRegions.Load()
-        sprites = New Sprites
+        textureRegions = New TextureRegions
+        sprites = New Sprites(textureRegions)
         shipSpriteInstance = New SpriteInstance(sprites.Read(Sprites.SpriteShip), New Vector2(32, 32), Color.Blue, Math.PI / 3)
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
