@@ -3,11 +3,11 @@
     Const ScreenWidth = 1280
     Const ScreenHeight = 720
     Private ReadOnly graphics As GraphicsDeviceManager
-    Private shipSpriteInstance As SpriteInstance
     Private spriteBatch As SpriteBatch
     Private textures As Textures
     Private textureRegions As TextureRegions
     Private sprites As Sprites
+    Private instances As Instances
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
     End Sub
@@ -25,7 +25,11 @@
         textures = New Textures(GraphicsDevice)
         textureRegions = New TextureRegions(textures)
         sprites = New Sprites(textureRegions)
-        shipSpriteInstance = New SpriteInstance(sprites.Read(Sprites.SpriteShip), New Vector2(32, 32), Color.Blue, Math.PI / 3)
+        instances = New Instances
+        instances.Add(New SpriteInstance(sprites.Read(Sprites.SpriteHex), New Vector2(32, 32), Color.White, 0))
+        instances.Add(New SpriteInstance(sprites.Read(Sprites.SpriteHex), New Vector2(32, 96), Color.White, 0))
+        instances.Add(New SpriteInstance(sprites.Read(Sprites.SpriteHex), New Vector2(80, 64), Color.White, 0))
+        instances.Add(New SpriteInstance(sprites.Read(Sprites.SpriteShip), New Vector2(32, 32), Color.Blue, Math.PI / 3))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         MyBase.Update(gameTime)
@@ -34,7 +38,7 @@
         MyBase.Draw(gameTime)
         spriteBatch.Begin()
         sprites.Read(Sprites.SpriteHex).Draw(spriteBatch, New Vector2(32, 32), Color.White, 0)
-        shipSpriteInstance.Draw(spriteBatch)
+        instances.Draw(spriteBatch)
         spriteBatch.End()
     End Sub
 End Class
