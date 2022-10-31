@@ -13,4 +13,8 @@
             table(entry.Key) = New Sprite(TextureRegions.Read(entry.Value.Item1), entry.Value.Item2, entry.Value.Item3, entry.Value.Item4, entry.Value.Item5)
         Next
     End Sub
+
+    Friend Function Read(spriteId As Long) As Sprite
+        Return table(spriteId)
+    End Function
 End Class
