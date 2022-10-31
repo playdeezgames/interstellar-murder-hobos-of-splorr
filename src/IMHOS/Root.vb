@@ -6,6 +6,7 @@
     Private hexTexture As Texture2D
     Private shipTexture As Texture2D
     Private shipSprite As Sprite
+    Private shipSpriteInstance As SpriteInstance
     Private spriteBatch As SpriteBatch
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
@@ -28,6 +29,7 @@
             shipTexture = Texture2D.FromStream(GraphicsDevice, stream)
         End Using
         shipSprite = New Sprite(shipTexture, Nothing, New Vector2(32, 32), New Vector2(1, 1), SpriteEffects.None, 0)
+        shipSpriteInstance = New SpriteInstance(shipSprite, New Vector2(32, 32), Color.Blue, Math.PI / 3)
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         MyBase.Update(gameTime)
@@ -36,7 +38,7 @@
         MyBase.Draw(gameTime)
         spriteBatch.Begin()
         spriteBatch.Draw(hexTexture, New Vector2(0, 0), Color.White)
-        shipSprite.Draw(spriteBatch, New Vector2(32, 32), Color.Blue, Math.PI / 3)
+        shipSpriteInstance.Draw(spriteBatch)
         spriteBatch.End()
     End Sub
 End Class
