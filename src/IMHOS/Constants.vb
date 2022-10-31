@@ -1,4 +1,4 @@
-﻿Public Module Constants
+﻿Public Class Constants
     Public Class Textures
         Public Const Hex = 1L
         Public Const Ship = 2L
@@ -11,4 +11,4 @@
         Public Const Hex = 1L
         Public Const Ship = 2L
     End Class
-End Module
+End Class
