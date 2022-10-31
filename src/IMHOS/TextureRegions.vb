@@ -4,11 +4,11 @@
     Private Shared ReadOnly source As IReadOnlyDictionary(Of Long, (Long, ((Integer, Integer), (Integer, Integer))?)) =
         New Dictionary(Of Long, (Long, ((Integer, Integer), (Integer, Integer))?)) From
         {
-            {TextureRegionHex, (Textures.TextureHex, Nothing)},
-            {TextureRegionShip, (Textures.TextureShip, Nothing)}
+            {TextureRegionHex, (Constants.Textures.Hex, Nothing)},
+            {TextureRegionShip, (Constants.Textures.Ship, Nothing)}
         }
     Private ReadOnly table As New Dictionary(Of Long, TextureRegion)
-    Sub New(textures As Textures)
+    Sub New(textures As ITextures)
         For Each entry In source
             table(entry.Key) = New TextureRegion(textures.Read(entry.Value.Item1), entry.Value.Item2)
         Next

@@ -4,7 +4,7 @@
     Const ScreenHeight = 720
     Private ReadOnly graphics As GraphicsDeviceManager
     Private spriteBatch As SpriteBatch
-    Private textures As Textures
+    Private textures As ITextures
     Private textureRegions As TextureRegions
     Private sprites As Sprites
     Private instances As Entities
@@ -22,7 +22,12 @@
     Protected Overrides Sub LoadContent()
         MyBase.LoadContent()
         spriteBatch = New SpriteBatch(GraphicsDevice)
-        textures = New Textures(GraphicsDevice)
+        textures = New Textures(GraphicsDevice, New Dictionary(Of Long, String) From
+        {
+            {Constants.Textures.Hex, "Content/hex.png"},
+            {Constants.Textures.Ship, "Content/ship.png"}
+        }
+)
         textureRegions = New TextureRegions(textures)
         sprites = New Sprites(textureRegions)
         instances = New Entities
