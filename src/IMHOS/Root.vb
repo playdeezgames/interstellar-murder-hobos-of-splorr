@@ -21,6 +21,7 @@
         MyBase.LoadContent()
         spriteBatch = New SpriteBatch(GraphicsDevice)
         Textures.Load(GraphicsDevice)
+        TextureRegions.Load()
         shipSprite = New Sprite(Textures.Read(TextureShip), Nothing, New Vector2(32, 32), New Vector2(1, 1), SpriteEffects.None, 0)
         shipSpriteInstance = New SpriteInstance(shipSprite, New Vector2(32, 32), Color.Blue, Math.PI / 3)
     End Sub
