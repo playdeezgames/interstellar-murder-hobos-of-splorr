@@ -6,6 +6,7 @@
     Private shipSprite As Sprite
     Private shipSpriteInstance As SpriteInstance
     Private spriteBatch As SpriteBatch
+    Private sprites As Sprites
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
     End Sub
@@ -22,7 +23,8 @@
         spriteBatch = New SpriteBatch(GraphicsDevice)
         Textures.Load(GraphicsDevice)
         TextureRegions.Load()
-        shipSprite = New Sprite(Textures.Read(TextureShip), Nothing, New Vector2(32, 32), New Vector2(1, 1), SpriteEffects.None, 0)
+        sprites = New Sprites
+        shipSprite = New Sprite(TextureRegions.Read(TextureRegionShip), New Vector2(32, 32), New Vector2(1, 1), SpriteEffects.None, 0)
         shipSpriteInstance = New SpriteInstance(shipSprite, New Vector2(32, 32), Color.Blue, Math.PI / 3)
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
