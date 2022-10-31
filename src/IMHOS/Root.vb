@@ -26,10 +26,10 @@
         textureRegions = New TextureRegions(textures)
         sprites = New Sprites(textureRegions)
         instances = New Entities
-        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), New Vector2(32, 32), Color.White, 0))
-        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), New Vector2(32, 96), Color.White, 0))
-        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), New Vector2(80, 64), Color.White, 0))
-        instances.Add(New Entity(sprites.Read(Sprites.SpriteShip), New Vector2(32, 32), Color.Blue, Math.PI * 3.0F / 3.0F))
+        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), (32.0F, 32.0F), (255, 255, 255, 255), 0))
+        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), (32.0F, 96.0F), (255, 255, 255, 255), 0))
+        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), (80.0F, 64.0F), (255, 255, 255, 255), 0))
+        instances.Add(New Entity(sprites.Read(Sprites.SpriteShip), (32.0F, 32.0F), (0, 0, 255, 255), Math.PI * 3.0F / 3.0F))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         MyBase.Update(gameTime)
@@ -37,7 +37,7 @@
     Protected Overrides Sub Draw(gameTime As GameTime)
         MyBase.Draw(gameTime)
         spriteBatch.Begin()
-        sprites.Read(Sprites.SpriteHex).Draw(spriteBatch, New Vector2(32, 32), Color.White, 0)
+        sprites.Read(Sprites.SpriteHex).Draw(spriteBatch, (32.0F, 32.0F), (255, 255, 255, 255), 0)
         instances.Draw(spriteBatch)
         spriteBatch.End()
     End Sub

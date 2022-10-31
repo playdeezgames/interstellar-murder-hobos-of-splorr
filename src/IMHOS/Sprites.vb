@@ -1,11 +1,11 @@
 ﻿Class Sprites
     Friend Const SpriteHex = 1L
     Friend Const SpriteShip = 2L
-    Private Shared source As IReadOnlyDictionary(Of Long, (Long, Vector2, Vector2, SpriteEffects, Single)) =
-        New Dictionary(Of Long, (Long, Vector2, Vector2, SpriteEffects, Single)) From
+    Private Shared source As IReadOnlyDictionary(Of Long, (Long, (Single, Single), (Single, Single), (Boolean, Boolean), Single)) =
+        New Dictionary(Of Long, (Long, (Single, Single), (Single, Single), (Boolean, Boolean), Single)) From
         {
-            {SpriteHex, (TextureRegions.TextureRegionHex, New Vector2(32, 32), New Vector2(1, 1), SpriteEffects.None, 0)},
-            {SpriteShip, (TextureRegions.TextureRegionShip, New Vector2(32, 32), New Vector2(1, 1), SpriteEffects.None, 0)}
+            {SpriteHex, (TextureRegions.TextureRegionHex, (32.0F, 32.0F), (1, 1), (False, False), 0)},
+            {SpriteShip, (TextureRegions.TextureRegionShip, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
         }
     Private ReadOnly table As New Dictionary(Of Long, Sprite)
     Sub New(textureregions As TextureRegions)

@@ -1,9 +1,9 @@
 ﻿Public Class Entity
     Private sprite As Sprite
-    Private position As Vector2
-    Private color As Color
+    Private position As (Single, Single)
+    Private color As (Byte, Byte, Byte, Byte)
     Private rotation As Single
-    Sub New(sprite As Sprite, position As Vector2, color As Color, rotation As Single)
+    Sub New(sprite As Sprite, position As (Single, Single), color As (Byte, Byte, Byte, Byte), rotation As Single)
         Me.sprite = sprite
         Me.position = position
         Me.color = color
