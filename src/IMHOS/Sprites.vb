@@ -4,8 +4,8 @@
     Private Shared source As IReadOnlyDictionary(Of Long, (Long, (Single, Single), (Single, Single), (Boolean, Boolean), Single)) =
         New Dictionary(Of Long, (Long, (Single, Single), (Single, Single), (Boolean, Boolean), Single)) From
         {
-            {SpriteHex, (TextureRegions.TextureRegionHex, (32.0F, 32.0F), (1, 1), (False, False), 0)},
-            {SpriteShip, (TextureRegions.TextureRegionShip, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
+            {SpriteHex, (Constants.TextureRegions.Hex, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)},
+            {SpriteShip, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
         }
     Private ReadOnly table As New Dictionary(Of Long, Sprite)
     Sub New(textureregions As TextureRegions)

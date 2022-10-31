@@ -26,9 +26,12 @@
         {
             {Constants.Textures.Hex, "Content/hex.png"},
             {Constants.Textures.Ship, "Content/ship.png"}
-        }
-)
-        textureRegions = New TextureRegions(textures)
+        })
+        textureRegions = New TextureRegions(textures, New Dictionary(Of Long, (Long, ((Integer, Integer), (Integer, Integer))?)) From
+        {
+            {Constants.TextureRegions.Hex, (Constants.Textures.Hex, Nothing)},
+            {Constants.TextureRegions.Ship, (Constants.Textures.Ship, Nothing)}
+        })
         sprites = New Sprites(textureRegions)
         instances = New Entities
         instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), (32.0F, 32.0F), (255, 255, 255, 255), 0))
