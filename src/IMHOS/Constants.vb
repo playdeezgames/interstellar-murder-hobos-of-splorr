@@ -7,4 +7,8 @@
         Public Const Hex = 1L
         Public Const Ship = 2L
     End Class
+    Public Class Sprites
+        Public Const Hex = 1L
+        Public Const Ship = 2L
+    End Class
 End Module

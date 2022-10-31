@@ -35,12 +35,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Import Include="IMHOS.My" />
+    <Import Include="IMHOS.UI" />
     <Import Include="Microsoft.Win32.SafeHandles" />
     <Import Include="Microsoft.Xna.Framework" />
     <Import Include="Microsoft.Xna.Framework.Design" />
     <Import Include="Microsoft.Xna.Framework.Graphics" />
     <Import Include="System.Globalization" />
     <Import Include="System.IO" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IMHOS.UI\IMHOS.UI.vbproj" />
   </ItemGroup>
 
 </Project>

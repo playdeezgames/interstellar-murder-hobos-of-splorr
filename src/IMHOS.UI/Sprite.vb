@@ -18,12 +18,12 @@
         Me.layerDepth = layerDepth
     End Sub
     Sub Draw(
-            spriteBatch As Object,
+            renderer As Object,
             position As (Single, Single),
             color As (Byte, Byte, Byte, Byte),
             rotation As Single) Implements ISprite.Draw
         textureRegion.Draw(
-            spriteBatch,
+            renderer,
             position,
             color,
             rotation,

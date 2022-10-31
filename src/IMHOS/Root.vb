@@ -6,7 +6,7 @@
     Private spriteBatch As SpriteBatch
     Private textures As ITextures
     Private textureRegions As TextureRegions
-    Private sprites As Sprites
+    Private sprites As UI.Sprites
     Private instances As Entities
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
@@ -32,12 +32,16 @@
             {Constants.TextureRegions.Hex, (Constants.Textures.Hex, Nothing)},
             {Constants.TextureRegions.Ship, (Constants.Textures.Ship, Nothing)}
         })
-        sprites = New Sprites(textureRegions)
+        sprites = New UI.Sprites(textureRegions, New Dictionary(Of Long, (Long, (Single, Single), (Single, Single), (Boolean, Boolean), Single)) From
+        {
+            {Constants.Sprites.Hex, (Constants.TextureRegions.Hex, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)},
+            {Constants.Sprites.Ship, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
+        })
         instances = New Entities
-        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), (32.0F, 32.0F), (255, 255, 255, 255), 0))
-        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), (32.0F, 96.0F), (255, 255, 255, 255), 0))
-        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), (80.0F, 64.0F), (255, 255, 255, 255), 0))
-        instances.Add(New Entity(sprites.Read(Sprites.SpriteShip), (32.0F, 32.0F), (0, 0, 255, 255), Math.PI * 3.0F / 3.0F))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 32.0F), (255, 255, 255, 255), 0))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 96.0F), (255, 255, 255, 255), 0))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (80.0F, 64.0F), (255, 255, 255, 255), 0))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Ship), (32.0F, 32.0F), (0, 0, 255, 255), Math.PI * 3.0F / 3.0F))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         MyBase.Update(gameTime)
@@ -45,7 +49,6 @@
     Protected Overrides Sub Draw(gameTime As GameTime)
         MyBase.Draw(gameTime)
         spriteBatch.Begin()
-        sprites.Read(Sprites.SpriteHex).Draw(spriteBatch, (32.0F, 32.0F), (255, 255, 255, 255), 0)
         instances.Draw(spriteBatch)
         spriteBatch.End()
     End Sub
