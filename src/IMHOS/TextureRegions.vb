@@ -1,8 +1,8 @@
 ﻿Friend Class TextureRegions
     Friend Const TextureRegionHex = 1L
     Friend Const TextureRegionShip = 2L
-    Private Shared ReadOnly source As IReadOnlyDictionary(Of Long, (Long, Rectangle?)) =
-        New Dictionary(Of Long, (Long, Rectangle?)) From
+    Private Shared ReadOnly source As IReadOnlyDictionary(Of Long, (Long, ((Integer, Integer), (Integer, Integer))?)) =
+        New Dictionary(Of Long, (Long, ((Integer, Integer), (Integer, Integer))?)) From
         {
             {TextureRegionHex, (Textures.TextureHex, Nothing)},
             {TextureRegionShip, (Textures.TextureShip, Nothing)}
