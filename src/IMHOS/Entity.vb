@@ -1,4 +1,4 @@
-﻿Public Class SpriteInstance
+﻿Public Class Entity
     Private sprite As Sprite
     Private position As Vector2
     Private color As Color

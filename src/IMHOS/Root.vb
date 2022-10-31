@@ -7,7 +7,7 @@
     Private textures As Textures
     Private textureRegions As TextureRegions
     Private sprites As Sprites
-    Private instances As Instances
+    Private instances As Entities
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
     End Sub
@@ -25,11 +25,11 @@
         textures = New Textures(GraphicsDevice)
         textureRegions = New TextureRegions(textures)
         sprites = New Sprites(textureRegions)
-        instances = New Instances
-        instances.Add(New SpriteInstance(sprites.Read(Sprites.SpriteHex), New Vector2(32, 32), Color.White, 0))
-        instances.Add(New SpriteInstance(sprites.Read(Sprites.SpriteHex), New Vector2(32, 96), Color.White, 0))
-        instances.Add(New SpriteInstance(sprites.Read(Sprites.SpriteHex), New Vector2(80, 64), Color.White, 0))
-        instances.Add(New SpriteInstance(sprites.Read(Sprites.SpriteShip), New Vector2(32, 32), Color.Blue, Math.PI / 3))
+        instances = New Entities
+        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), New Vector2(32, 32), Color.White, 0))
+        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), New Vector2(32, 96), Color.White, 0))
+        instances.Add(New Entity(sprites.Read(Sprites.SpriteHex), New Vector2(80, 64), Color.White, 0))
+        instances.Add(New Entity(sprites.Read(Sprites.SpriteShip), New Vector2(32, 32), Color.Blue, Math.PI * 3.0F / 3.0F))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         MyBase.Update(gameTime)
