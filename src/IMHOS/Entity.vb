@@ -1,4 +1,5 @@
 ﻿Public Class Entity
+    Implements IEntity
     Private sprite As Sprite
     Private position As (Single, Single)
     Private color As (Byte, Byte, Byte, Byte)
@@ -9,7 +10,7 @@
         Me.color = color
         Me.rotation = rotation
     End Sub
-    Sub Draw(spriteBatch As SpriteBatch)
-        sprite.Draw(spriteBatch, position, color, rotation)
+    Sub Draw(renderer As Object) Implements IEntity.Draw
+        sprite.Draw(renderer, position, color, rotation)
     End Sub
 End Class
