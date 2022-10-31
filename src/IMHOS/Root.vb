@@ -3,8 +3,6 @@
     Const ScreenWidth = 1280
     Const ScreenHeight = 720
     Private ReadOnly graphics As GraphicsDeviceManager
-    Private hexTexture As Texture2D
-    Private shipTexture As Texture2D
     Private shipSprite As Sprite
     Private shipSpriteInstance As SpriteInstance
     Private spriteBatch As SpriteBatch
@@ -22,13 +20,8 @@
     Protected Overrides Sub LoadContent()
         MyBase.LoadContent()
         spriteBatch = New SpriteBatch(GraphicsDevice)
-        Using stream As New FileStream("Content/hex.png", FileMode.Open)
-            hexTexture = Texture2D.FromStream(GraphicsDevice, stream)
-        End Using
-        Using stream As New FileStream("Content/ship.png", FileMode.Open)
-            shipTexture = Texture2D.FromStream(GraphicsDevice, stream)
-        End Using
-        shipSprite = New Sprite(shipTexture, Nothing, New Vector2(32, 32), New Vector2(1, 1), SpriteEffects.None, 0)
+        Textures.Load(GraphicsDevice)
+        shipSprite = New Sprite(Textures.Read(TextureShip), Nothing, New Vector2(32, 32), New Vector2(1, 1), SpriteEffects.None, 0)
         shipSpriteInstance = New SpriteInstance(shipSprite, New Vector2(32, 32), Color.Blue, Math.PI / 3)
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
@@ -37,7 +30,7 @@
     Protected Overrides Sub Draw(gameTime As GameTime)
         MyBase.Draw(gameTime)
         spriteBatch.Begin()
-        spriteBatch.Draw(hexTexture, New Vector2(0, 0), Color.White)
+        spriteBatch.Draw(Textures.Read(TextureHex), New Vector2(0, 0), Color.White)
         shipSpriteInstance.Draw(spriteBatch)
         spriteBatch.End()
     End Sub
