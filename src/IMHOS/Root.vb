@@ -40,10 +40,10 @@
         })
         shipRotation = New ReadWriteValueSource(Of Single)(Math.PI * 3.0F / 3.0F)
         instances = New Entities
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 32.0F), (255, 255, 255, 255), New ReadOnlyValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 96.0F), (255, 255, 255, 255), New ReadOnlyValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (80.0F, 64.0F), (255, 255, 255, 255), New ReadOnlyValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Ship), (32.0F, 32.0F), (0, 0, 255, 255), shipRotation))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 32.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 96.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (80.0F, 64.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Ship), (32.0F, 32.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255)), shipRotation))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         MyBase.Update(gameTime)
