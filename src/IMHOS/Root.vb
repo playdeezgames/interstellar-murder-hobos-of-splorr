@@ -42,16 +42,23 @@
             {Constants.Sprites.Hex, (Constants.TextureRegions.Hex, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)},
             {Constants.Sprites.Ship, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
         })
+        hexSprite = New ReadOnlyValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Hex))
+
         shipRotation = New ReadWriteValueSource(Of Single)(Math.PI * 3.0F / 3.0F)
         shipColor = New ReadWriteValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255))
         shipPosition = New ReadWriteValueSource(Of (Single, Single))((32.0F, 32.0F))
-        hexSprite = New ReadOnlyValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Hex))
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
-
         instances = New Entities
-        instances.Add(New Entity(hexSprite, New ReadOnlyValueSource(Of (Single, Single))((32.0F, 32.0F)), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(hexSprite, New ReadOnlyValueSource(Of (Single, Single))((32.0F, 96.0F)), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(hexSprite, New ReadOnlyValueSource(Of (Single, Single))((80.0F, 64.0F)), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
+        For x = 0 To 25
+            For y = 0 To 9
+                instances.Add(New Entity(
+                              hexSprite,
+                              New ReadOnlyValueSource(Of (Single, Single))((40.0F + x * 48.0F, 56.0F + y * 64.0F + If(x Mod 2 = 1, 32.0F, 0.0F))),
+                              New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)),
+                              New ReadOnlyValueSource(Of Single)(0.0F)))
+            Next
+        Next
+
         instances.Add(New Entity(shipSprite, shipPosition, shipColor, shipRotation))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
