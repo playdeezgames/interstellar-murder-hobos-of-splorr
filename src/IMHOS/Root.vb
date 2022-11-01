@@ -9,6 +9,7 @@
     Private sprites As ISprites
     Private instances As IEntities
     Private shipRotation As IWriteValueSource(Of Single)
+    Private shipColor As IWriteValueSource(Of (Byte, Byte, Byte, Byte))
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
     End Sub
@@ -39,15 +40,19 @@
             {Constants.Sprites.Ship, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
         })
         shipRotation = New ReadWriteValueSource(Of Single)(Math.PI * 3.0F / 3.0F)
+        shipColor = New ReadWriteValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255))
         instances = New Entities
         instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 32.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
         instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 96.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
         instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (80.0F, 64.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Ship), (32.0F, 32.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255)), shipRotation))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Ship), (32.0F, 32.0F), shipColor, shipRotation))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         MyBase.Update(gameTime)
         shipRotation.Write(shipRotation.Read() + 0.01F)
+
+        Dim color = shipColor.Read
+        shipColor.Write((CByte((color.Item1 + 1) And 255), CByte((color.Item2 + 254) And 255), color.Item3, color.Item4))
     End Sub
     Protected Overrides Sub Draw(gameTime As GameTime)
         MyBase.Draw(gameTime)
