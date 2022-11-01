@@ -38,10 +38,10 @@
             {Constants.Sprites.Ship, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
         })
         instances = New Entities
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 32.0F), (255, 255, 255, 255), 0))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 96.0F), (255, 255, 255, 255), 0))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (80.0F, 64.0F), (255, 255, 255, 255), 0))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Ship), (32.0F, 32.0F), (0, 0, 255, 255), Math.PI * 3.0F / 3.0F))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 32.0F), (255, 255, 255, 255), New FixedValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 96.0F), (255, 255, 255, 255), New FixedValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (80.0F, 64.0F), (255, 255, 255, 255), New FixedValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Ship), (32.0F, 32.0F), (0, 0, 255, 255), New FixedValueSource(Of Single)(Math.PI * 3.0F / 3.0F)))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         MyBase.Update(gameTime)
