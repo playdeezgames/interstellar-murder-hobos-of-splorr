@@ -1,20 +1,18 @@
 ﻿Public Class HexPlotter_should
-    <Fact>
-    Sub plot_x()
+    <Theory>
+    <InlineData(0L, 0L, 0.0F)>
+    Sub plot_x(x As Long, y As Long, expectedPlotX As Single)
         Const width = 32.0F
         Const height = 24.0F
-        Const y = 0L
-        Const x = 0L
         Dim subject As IPlotter = New HexPlotter(width, height)
-        subject.PlotX(x, y).ShouldBe(0.0F)
+        subject.PlotX(x, y).ShouldBe(expectedPlotX)
     End Sub
-    <Fact>
-    Sub plot_y()
+    <Theory>
+    <InlineData(0L, 0L, 0.0F)>
+    Sub plot_y(x As Long, y As Long, expectedPlotY As Single)
         Const width = 32.0F
         Const height = 24.0F
-        Const y = 0L
-        Const x = 0L
         Dim subject As IPlotter = New HexPlotter(width, height)
-        subject.PlotY(x, y).ShouldBe(0.0F)
+        subject.PlotY(x, y).ShouldBe(expectedPlotY)
     End Sub
 End Class
