@@ -8,6 +8,7 @@
     Private textureRegions As ITextureRegions
     Private sprites As ISprites
     Private instances As IEntities
+    Private shipPosition As IWriteValueSource(Of (Single, Single))
     Private shipRotation As IWriteValueSource(Of Single)
     Private shipColor As IWriteValueSource(Of (Byte, Byte, Byte, Byte))
     Sub New()
@@ -41,11 +42,12 @@
         })
         shipRotation = New ReadWriteValueSource(Of Single)(Math.PI * 3.0F / 3.0F)
         shipColor = New ReadWriteValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255))
+        shipPosition = New ReadWriteValueSource(Of (Single, Single))((32.0F, 32.0F))
         instances = New Entities
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 32.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 96.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (80.0F, 64.0F), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Ship), (32.0F, 32.0F), shipColor, shipRotation))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), New ReadOnlyValueSource(Of (Single, Single))((32.0F, 32.0F)), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), New ReadOnlyValueSource(Of (Single, Single))((32.0F, 96.0F)), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), New ReadOnlyValueSource(Of (Single, Single))((80.0F, 64.0F)), New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)), New ReadOnlyValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Ship), shipPosition, shipColor, shipRotation))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         MyBase.Update(gameTime)
@@ -53,6 +55,9 @@
 
         Dim color = shipColor.Read
         shipColor.Write((CByte((color.Item1 + 1) And 255), CByte((color.Item2 + 254) And 255), color.Item3, color.Item4))
+
+        Dim position = shipPosition.Read
+        shipPosition.Write((position.Item1 + 1.0F, position.Item2))
     End Sub
     Protected Overrides Sub Draw(gameTime As GameTime)
         MyBase.Draw(gameTime)
