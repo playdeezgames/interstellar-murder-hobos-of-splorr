@@ -5,9 +5,9 @@
     Private ReadOnly graphics As GraphicsDeviceManager
     Private spriteBatch As SpriteBatch
     Private textures As ITextures
-    Private textureRegions As TextureRegions
-    Private sprites As UI.Sprites
-    Private instances As Entities
+    Private textureRegions As ITextureRegions
+    Private sprites As ISprites
+    Private instances As IEntities
     Private shipRotation As IWriteValueSource(Of Single)
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
