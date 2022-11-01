@@ -5,8 +5,8 @@ Public Class Entity
     Private sprite As ISprite
     Private position As (Single, Single)
     Private color As (Byte, Byte, Byte, Byte)
-    Private rotation As IValueSource(Of Single)
-    Sub New(sprite As ISprite, position As (Single, Single), color As (Byte, Byte, Byte, Byte), rotation As IValueSource(Of Single))
+    Private rotation As IReadValueSource(Of Single)
+    Sub New(sprite As ISprite, position As (Single, Single), color As (Byte, Byte, Byte, Byte), rotation As IReadValueSource(Of Single))
         Me.sprite = sprite
         Me.position = position
         Me.color = color

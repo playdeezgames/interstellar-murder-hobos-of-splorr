@@ -8,7 +8,7 @@
     Private textureRegions As TextureRegions
     Private sprites As UI.Sprites
     Private instances As Entities
-    Private shipRotation As IValueSource(Of Single)
+    Private shipRotation As IReadValueSource(Of Single)
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
     End Sub
@@ -38,11 +38,11 @@
             {Constants.Sprites.Hex, (Constants.TextureRegions.Hex, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)},
             {Constants.Sprites.Ship, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
         })
-        shipRotation = New FixedValueSource(Of Single)(Math.PI * 3.0F / 3.0F)
+        shipRotation = New ReadOnlyValueSource(Of Single)(Math.PI * 3.0F / 3.0F)
         instances = New Entities
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 32.0F), (255, 255, 255, 255), New FixedValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 96.0F), (255, 255, 255, 255), New FixedValueSource(Of Single)(0.0F)))
-        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (80.0F, 64.0F), (255, 255, 255, 255), New FixedValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 32.0F), (255, 255, 255, 255), New ReadOnlyValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (32.0F, 96.0F), (255, 255, 255, 255), New ReadOnlyValueSource(Of Single)(0.0F)))
+        instances.Add(New Entity(sprites.Read(Constants.Sprites.Hex), (80.0F, 64.0F), (255, 255, 255, 255), New ReadOnlyValueSource(Of Single)(0.0F)))
         instances.Add(New Entity(sprites.Read(Constants.Sprites.Ship), (32.0F, 32.0F), (0, 0, 255, 255), shipRotation))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)

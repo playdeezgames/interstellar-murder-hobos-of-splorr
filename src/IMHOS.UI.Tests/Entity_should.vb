@@ -8,7 +8,7 @@
         Const G As Byte = 4
         Const B As Byte = 5
         Const A As Byte = 6
-        Dim rotation As New Mock(Of IValueSource(Of Single))
+        Dim rotation As New Mock(Of IReadValueSource(Of Single))
         Dim renderer As Object = Nothing
         Dim subject As IEntity = New Entity(sprite.Object, (X, Y), (R, G, B, A), rotation.Object)
         subject.Draw(renderer)
