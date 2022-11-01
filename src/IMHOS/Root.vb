@@ -49,11 +49,12 @@
         shipPosition = New ReadWriteValueSource(Of (Single, Single))((32.0F, 32.0F))
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
         instances = New Entities
-        For x = 0 To 25
-            For y = 0 To 9
+        Dim plotter As IPlotter = New HexPlotter(48.0F, 64.0F)
+        For x = 0L To 25L
+            For y = 0L To 9L
                 instances.Add(New Entity(
                               hexSprite,
-                              New ReadOnlyValueSource(Of (Single, Single))((40.0F + x * 48.0F, 56.0F + y * 64.0F + If(x Mod 2 = 1, 32.0F, 0.0F))),
+                              New ReadOnlyValueSource(Of (Single, Single))((40.0F + plotter.PlotX(x, y), 56.0F + plotter.PlotY(x, y))),
                               New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)),
                               New ReadOnlyValueSource(Of Single)(0.0F)))
             Next

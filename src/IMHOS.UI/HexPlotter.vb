@@ -12,6 +12,6 @@
     End Function
 
     Public Function PlotY(x As Long, y As Long) As Single Implements IPlotter.PlotY
-        Return 0.0F
+        Return y * height + If(x Mod 2 = 1, height / 2, 0.0F)
     End Function
 End Class
