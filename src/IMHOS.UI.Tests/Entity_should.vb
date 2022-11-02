@@ -7,7 +7,7 @@
         Dim color As New Mock(Of IReadValueSource(Of (Byte, Byte, Byte, Byte)))
         Dim rotation As New Mock(Of IReadValueSource(Of Single))
         Dim renderer As Object = Nothing
-        Dim subject As IEntity = New Entity(sprite.Object, position.Object, color.Object, rotation.Object)
+        Dim subject As IEntity = New Entity(Nothing, sprite.Object, position.Object, color.Object, rotation.Object)
         subject.Draw(renderer)
         sprite.Verify(Sub(s) s.Read.Draw(renderer, (0.0F, 0.0F), (0, 0, 0, 0), 0.0F))
         rotation.Verify(Function(w) w.Read)
