@@ -44,20 +44,23 @@ Public Class Root
             {Constants.Sprites.Hex, (Constants.TextureRegions.Hex, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)},
             {Constants.Sprites.Ship, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
         })
-        gridOffset = New ReadWriteValueSource(Of (Single, Single))((-208.0F, 352.0F))
+        gridOffset = New ReadWriteValueSource(Of (Single, Single))((0.0F, 0.0F))
         Dim plotter As IPlotter = New HexPlotter(48.0F, 64.0F)
-        shipRotation = New ReadWriteValueSource(Of Single)(Math.PI * 3.0F / 3.0F)
+        shipRotation = New ReadWriteValueSource(Of Single)(0.0F)
         shipColor = New ReadWriteValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255))
-        shipPosition = New ReadWriteValueSource(Of (Single, Single))((32.0F, 32.0F))
+        shipPosition = New ReadWriteValueSource(Of (Single, Single))((0.0F, 0.0F))
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
         instances = New Entities
-        instances.Add(New HexGridEntity(Nothing, gridOffset, plotter, 6L, sprites.Read(Constants.Sprites.Hex)))
-        instances.Add(New Entity(Nothing, shipSprite, shipPosition, shipColor, shipRotation))
+        Dim gridEntity = New HexGridEntity(Nothing, gridOffset, plotter, 32L, sprites.Read(Constants.Sprites.Hex))
+        instances.Add(gridEntity)
+        Dim shipEntity = New Entity(gridEntity.Hex(31L, 31L), shipSprite, shipPosition, shipColor, shipRotation)
+        instances.Add(shipEntity)
+        gridOffset.Write((ScreenWidth / 2.0F - shipEntity.Position.Item1, ScreenHeight / 2.0F - shipEntity.Position.Item2))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         Dim keyboardState = Keyboard.GetState()
-        Dim deltaX = If(keyboardState.IsKeyDown(Keys.Left), -1L, 0L) + If(keyboardState.IsKeyDown(Keys.Right), 1L, 0L)
-        Dim deltaY = If(keyboardState.IsKeyDown(Keys.Up), -1L, 0L) + If(keyboardState.IsKeyDown(Keys.Down), 1L, 0L)
+        Dim deltaX = If(keyboardState.IsKeyDown(Keys.Left), 1L, 0L) + If(keyboardState.IsKeyDown(Keys.Right), -1L, 0L)
+        Dim deltaY = If(keyboardState.IsKeyDown(Keys.Up), 1L, 0L) + If(keyboardState.IsKeyDown(Keys.Down), -1L, 0L)
         Dim position = gridOffset.Read
         gridOffset.Write((position.Item1 + deltaX, position.Item2 + deltaY))
     End Sub
