@@ -3,7 +3,7 @@
     Sub draw()
         Dim plotter As New Mock(Of IPlotter)
         Dim sprite As New Mock(Of ISprite)
-        Dim subject As IEntity = New HexGridEntity(plotter.Object, 1L, sprite.Object)
+        Dim subject As IEntity = New HexGridEntity(Nothing, (0.0F, 0.0F).ToReadOnlyValueSource, plotter.Object, 1L, sprite.Object)
         Dim renderer As Object = Nothing
         subject.Draw(renderer)
         plotter.Verify(Function(x) x.PlotX(0L, 0L))

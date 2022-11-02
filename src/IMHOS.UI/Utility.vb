@@ -1,8 +1,8 @@
 ﻿Imports System.Runtime.CompilerServices
 
-Module Utility
+Public Module Utility
     <Extension>
-    Function ToReadOnlyValueSource(Of TValue)(value As TValue) As IReadValueSource(Of TValue)
+    Public Function ToReadOnlyValueSource(Of TValue)(value As TValue) As IReadValueSource(Of TValue)
         Return New ReadOnlyValueSource(Of TValue)(value)
     End Function
 End Module
