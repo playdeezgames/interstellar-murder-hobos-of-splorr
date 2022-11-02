@@ -1,17 +1,17 @@
 ﻿Public Class HexPlotter
     Implements IPlotter
     Private ReadOnly width As Single
-    Private ReadOnly height As Single
+    Private ReadOnly halfHeight As Single
     Sub New(width As Single, height As Single)
         Me.width = width
-        Me.height = height
+        Me.halfHeight = height / 2.0F
     End Sub
 
     Public Function PlotX(x As Long, y As Long) As Single Implements IPlotter.PlotX
-        Return x * width
+        Return x * width + y * width
     End Function
 
     Public Function PlotY(x As Long, y As Long) As Single Implements IPlotter.PlotY
-        Return y * height + If(x Mod 2 = 1, height / 2, 0.0F)
+        Return y * halfHeight - x * halfHeight
     End Function
 End Class

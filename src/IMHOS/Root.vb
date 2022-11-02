@@ -50,11 +50,16 @@
         shipPosition = New ReadWriteValueSource(Of (Single, Single))((32.0F, 32.0F))
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
         instances = New Entities
-        For x = 0L To 25L
-            For y = 0L To 9L
+        Dim n = 5L
+        Dim columns = 2 * n - 1L
+        Dim rows = 2 * n - 1L
+
+        For x = 0L To columns - 1
+            For y = 0L To rows - 1
+                If x + y < (n - 1) OrElse x + y > 3 * n - 3 Then Continue For
                 instances.Add(New Entity(
                               hexSprite,
-                              New ReadOnlyValueSource(Of (Single, Single))((40.0F + plotter.PlotX(x, y), 56.0F + plotter.PlotY(x, y))),
+                              New ReadOnlyValueSource(Of (Single, Single))((40.0F + plotter.PlotX(x, y), 350.0F + plotter.PlotY(x, y))),
                               New ReadOnlyValueSource(Of (Byte, Byte, Byte, Byte))((255, 255, 255, 255)),
                               New ReadOnlyValueSource(Of Single)(0.0F)))
             Next
