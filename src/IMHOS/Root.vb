@@ -2,8 +2,6 @@
 
 Public Class Root
     Inherits Game
-    Const ScreenWidth = 1280
-    Const ScreenHeight = 720
     Private ReadOnly graphics As GraphicsDeviceManager
     Private spriteBatch As SpriteBatch
     Private textures As ITextures
@@ -21,8 +19,8 @@ Public Class Root
     Protected Overrides Sub Initialize()
         MyBase.Initialize()
         Window.Title = "Interstellar Murder Hobos of SPLORR!!"
-        graphics.PreferredBackBufferWidth = ScreenWidth
-        graphics.PreferredBackBufferHeight = ScreenHeight
+        graphics.PreferredBackBufferWidth = Constants.Screen.Width
+        graphics.PreferredBackBufferHeight = Constants.Screen.Height
         graphics.ApplyChanges()
         Content.RootDirectory = "Content"
     End Sub
@@ -45,17 +43,19 @@ Public Class Root
             {Constants.Sprites.Ship, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
         })
         gridOffset = New ReadWriteValueSource(Of (Single, Single))((0.0F, 0.0F))
-        Dim plotter As IPlotter = New HexPlotter(48.0F, 64.0F)
+        Dim plotter As IPlotter = New HexPlotter(Constants.Plotter.Width, Constants.Plotter.Height)
         shipRotation = New ReadWriteValueSource(Of Single)(0.0F)
         shipColor = New ReadWriteValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255))
         shipPosition = New ReadWriteValueSource(Of (Single, Single))((0.0F, 0.0F))
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
         instances = New Entities
-        Dim gridEntity = New HexGridEntity(Nothing, gridOffset, plotter, 32L, sprites.Read(Constants.Sprites.Hex))
+        Dim gridEntity = New HexGridEntity(Nothing, gridOffset, plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
         instances.Add(gridEntity)
-        Dim shipEntity = New Entity(gridEntity.Hex(31L, 31L), shipSprite, shipPosition, shipColor, shipRotation)
+
+        Dim shipEntity = New Entity(gridEntity.Hex(Constants.HexGrid.Size - 1L, Constants.HexGrid.Size - 1L), shipSprite, shipPosition, shipColor, shipRotation)
         instances.Add(shipEntity)
-        gridOffset.Write((ScreenWidth / 2.0F - shipEntity.Position.Item1, ScreenHeight / 2.0F - shipEntity.Position.Item2))
+
+        gridOffset.Write((Constants.Screen.Width / 2.0F - shipEntity.Position.Item1, Constants.Screen.Height / 2.0F - shipEntity.Position.Item2))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
         Dim keyboardState = Keyboard.GetState()
