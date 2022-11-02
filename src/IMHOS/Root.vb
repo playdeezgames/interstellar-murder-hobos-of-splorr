@@ -44,12 +44,12 @@
         })
         hexSprite = New ReadOnlyValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Hex))
 
+        Dim plotter As IPlotter = New HexPlotter(48.0F, 64.0F)
         shipRotation = New ReadWriteValueSource(Of Single)(Math.PI * 3.0F / 3.0F)
         shipColor = New ReadWriteValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255))
         shipPosition = New ReadWriteValueSource(Of (Single, Single))((32.0F, 32.0F))
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
         instances = New Entities
-        Dim plotter As IPlotter = New HexPlotter(48.0F, 64.0F)
         For x = 0L To 25L
             For y = 0L To 9L
                 instances.Add(New Entity(
