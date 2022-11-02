@@ -1,6 +1,7 @@
 ﻿Public Class HexGridEntity
     Inherits BaseEntity
-    Private children As New List(Of IEntity)
+    Implements IHexGridEntity
+    Private children As New Dictionary(Of (Long, Long), IEntity)
     Sub New(parent As IEntity, relativePosition As IReadValueSource(Of (Single, Single)), plotter As IPlotter, size As Long, sprite As ISprite)
         MyBase.New(parent, relativePosition)
         Dim columns = size * 2L - 1L
@@ -16,14 +17,26 @@
                         xy.ToReadOnlyValueSource,
                         color.ToReadOnlyValueSource,
                         0.0F.ToReadOnlyValueSource)
-                    children.Add(entity)
+                    children.Add((column, row), entity)
                 End If
             Next
         Next
     End Sub
+
+    Public ReadOnly Property Hex(column As Long, row As Long) As IEntity Implements IHexGridEntity.Hex
+        Get
+            Dim xy = (column, row)
+            Dim entity As IEntity = Nothing
+            If children.TryGetValue(xy, entity) Then
+                Return entity
+            End If
+            Return Nothing
+        End Get
+    End Property
+
     Public Overrides Sub Draw(renderer As Object)
         For Each child In children
-            child.Draw(renderer)
+            child.Value.Draw(renderer)
         Next
     End Sub
 End Class

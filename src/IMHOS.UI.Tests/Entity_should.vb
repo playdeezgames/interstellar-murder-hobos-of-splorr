@@ -35,6 +35,7 @@
         WithSubject(
             Sub(subject, sprite, position, color, rotation)
                 subject.Position.ShouldBe((0.0F, 0.0F))
+                position.Verify(Function(x) x.Read)
             End Sub)
     End Sub
 End Class
