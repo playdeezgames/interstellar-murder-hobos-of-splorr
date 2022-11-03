@@ -7,7 +7,7 @@ Public Class Root
     Private textures As ITextures
     Private textureRegions As ITextureRegions
     Private sprites As ISprites
-    Private instances As IEntity
+    Private stage As IEntity
     Private shipPosition As (Single, Single)
     Private shipRotation As IWriteValueSource(Of Single)
     Private shipColor As IWriteValueSource(Of (Byte, Byte, Byte, Byte))
@@ -48,24 +48,22 @@ Public Class Root
         shipColor = New ReadWriteValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255))
         shipPosition = (0.0F, 0.0F)
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
-        instances = New Entities(Nothing, (0.0F, 0.0F))
+        stage = New Entities(Nothing, (Constants.Screen.Width / 2.0F, Constants.Screen.Height / 2.0F))
         Dim gridEntity = New HexGridEntity(Nothing, gridOffset, plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
-        instances.Add(gridEntity)
+        stage.Add(gridEntity)
 
-        Dim shipEntity = New Entity(gridEntity.Hex(Constants.HexGrid.Size - 1L, Constants.HexGrid.Size - 1L), shipSprite, shipPosition, shipColor, shipRotation)
-        instances.Add(shipEntity)
+        Dim shipEntity = New Entity(stage, shipSprite, shipPosition, shipColor, shipRotation)
+        stage.Add(shipEntity)
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
-
-        'instances.Update(gameTime.ElapsedGameTime)
-
+        stage.Update(gameTime.ElapsedGameTime)
     End Sub
     Protected Overrides Sub Draw(gameTime As GameTime)
         MyBase.Draw(gameTime)
         GraphicsDevice.Clear(Color.Black)
         spriteBatch.Begin()
 
-        instances.Draw(spriteBatch)
+        stage.Draw(spriteBatch)
 
         spriteBatch.End()
     End Sub
