@@ -39,4 +39,7 @@
             child.Value.Draw(renderer)
         Next
     End Sub
+
+    Public Overrides Sub Update(delta As TimeSpan)
+    End Sub
 End Class

@@ -21,7 +21,7 @@
             Sub(subject, sprite, color, rotation)
                 Dim renderer As Object = Nothing
                 subject.Draw(renderer)
-                sprite.Verify(Sub(s) s.Read.Draw(renderer, (0.0F, 0.0F), (0, 0, 0, 0), 0.0F))
+                sprite.Verify(Sub(s) s.Read.Draw(renderer, (0.0F, 1.0F), (0, 0, 0, 0), 0.0F))
                 rotation.Verify(Function(w) w.Read)
                 color.Verify(Function(w) w.Read)
             End Sub)
@@ -31,7 +31,14 @@
     Sub have_a_position()
         WithSubject(
             Sub(subject, sprite, color, rotation)
-                subject.Position.ShouldBe((0.0F, 0.0F))
+                subject.Position.ShouldBe((0.0F, 1.0F))
+            End Sub)
+    End Sub
+    <Fact>
+    Sub update()
+        WithSubject(
+            Sub(subject, sprite, color, rotation)
+                subject.Update(New TimeSpan(1L))
             End Sub)
     End Sub
 End Class

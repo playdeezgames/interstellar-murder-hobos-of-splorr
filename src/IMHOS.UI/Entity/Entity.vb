@@ -18,4 +18,7 @@
     Overrides Sub Draw(renderer As Object) Implements IEntity.Draw
         sprite.Read().Draw(renderer, Position, color.Read(), rotation.Read())
     End Sub
+
+    Public Overrides Sub Update(delta As TimeSpan)
+    End Sub
 End Class

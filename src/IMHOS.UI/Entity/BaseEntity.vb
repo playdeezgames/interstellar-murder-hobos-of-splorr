@@ -15,4 +15,5 @@
     End Property
 
     Public MustOverride Sub Draw(renderer As Object) Implements IEntity.Draw
+    Public MustOverride Sub Update(delta As TimeSpan) Implements IEntity.Update
 End Class

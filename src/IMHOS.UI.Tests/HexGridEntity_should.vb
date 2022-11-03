@@ -17,7 +17,7 @@
                 subject.Draw(renderer)
                 plotter.Verify(Function(x) x.PlotX(0L, 0L))
                 plotter.Verify(Function(x) x.PlotY(0L, 0L))
-                sprite.Verify(Sub(x) x.Draw(Nothing, (0, 0), (255, 255, 255, 255), 0))
+                sprite.Verify(Sub(x) x.Draw(Nothing, (0, 1), (255, 255, 255, 255), 0))
             End Sub)
     End Sub
     <Fact>
@@ -25,6 +25,15 @@
         WithSubject(
             Sub(subject, plotter, sprite)
                 subject.Hex(0L, 0L).ShouldNotBeNull
+                plotter.Verify(Function(x) x.PlotX(0L, 0L))
+                plotter.Verify(Function(x) x.PlotY(0L, 0L))
+            End Sub)
+    End Sub
+    <Fact>
+    Sub update()
+        WithSubject(
+            Sub(subject, plotter, sprite)
+                subject.Update(New TimeSpan(1L))
                 plotter.Verify(Function(x) x.PlotX(0L, 0L))
                 plotter.Verify(Function(x) x.PlotY(0L, 0L))
             End Sub)
