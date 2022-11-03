@@ -7,7 +7,7 @@ Public Class Root
     Private textures As ITextures
     Private textureRegions As ITextureRegions
     Private sprites As ISprites
-    Private instances As IEntities
+    Private instances As IEntity
     Private shipPosition As (Single, Single)
     Private shipRotation As IWriteValueSource(Of Single)
     Private shipColor As IWriteValueSource(Of (Byte, Byte, Byte, Byte))
@@ -48,7 +48,7 @@ Public Class Root
         shipColor = New ReadWriteValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255))
         shipPosition = (0.0F, 0.0F)
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
-        instances = New Entities
+        instances = New Entities(Nothing, (0.0F, 0.0F))
         Dim gridEntity = New HexGridEntity(Nothing, gridOffset, plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
         instances.Add(gridEntity)
 

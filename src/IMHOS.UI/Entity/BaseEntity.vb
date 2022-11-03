@@ -14,6 +14,23 @@
         End Get
     End Property
 
-    Public MustOverride Sub Draw(renderer As Object) Implements IEntity.Draw
-    Public MustOverride Sub Update(delta As TimeSpan) Implements IEntity.Update
+    Public Overridable Sub Update(delta As TimeSpan) Implements IEntity.Update
+        For Each child In children
+            child.Value.Update(delta)
+        Next
+    End Sub
+    Private ReadOnly children As New Dictionary(Of Guid, IEntity)
+    Function Add(child As IEntity) As Guid Implements IEntity.Add
+        Dim id = Guid.NewGuid
+        children.Add(id, child)
+        Return id
+    End Function
+    Function Read(id As Guid) As IEntity Implements IEntity.Read
+        Return children(id)
+    End Function
+    Overridable Sub Draw(renderer As Object) Implements IEntity.Draw
+        For Each child In children
+            child.Value.Draw(renderer)
+        Next
+    End Sub
 End Class
