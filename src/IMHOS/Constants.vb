@@ -20,6 +20,6 @@
         Public Const Height = 64.0F
     End Class
     Public Class HexGrid
-        Public Const Size = 5L
+        Public Const Size = 32L
     End Class
 End Class
