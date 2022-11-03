@@ -3,15 +3,15 @@ Public Class Entities_should
     Sub add()
         Dim entity As New Mock(Of IEntity)
         Dim subject As IEntities = New Entities()
-        subject.Add(entity.Object).ShouldBe(0)
+        subject.Add(entity.Object).ShouldNotBe(Guid.Empty)
         entity.VerifyNoOtherCalls()
     End Sub
     <Fact>
     Sub read()
         Dim subject As IEntities = New Entities()
-        Should.Throw(Of ArgumentOutOfRangeException)(Sub()
-                                                         subject.Read(0)
-                                                     End Sub)
+        Should.Throw(Of KeyNotFoundException)(Sub()
+                                                  subject.Read(Guid.NewGuid)
+                                              End Sub)
     End Sub
     <Fact>
     Sub draw()
