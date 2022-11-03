@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>IMHOS</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
     <StartupObject>IMHOS.Program</StartupObject>
@@ -17,33 +17,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Content\hex.png" />
-    <None Remove="Content\ship.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Content\hex.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\ship.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Import Include="IMHOS.Domain" />
     <Import Include="IMHOS.My" />
     <Import Include="IMHOS.UI" />
+    <Import Include="Microsoft.Win32" />
     <Import Include="Microsoft.Win32.SafeHandles" />
-    <Import Include="Microsoft.Xna.Framework" />
-    <Import Include="Microsoft.Xna.Framework.Design" />
-    <Import Include="Microsoft.Xna.Framework.Graphics" />
+    <Import Include="Spectre.Console" />
     <Import Include="System.Globalization" />
     <Import Include="System.IO" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.45.0" />
   </ItemGroup>
 
   <ItemGroup>
