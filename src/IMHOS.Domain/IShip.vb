@@ -1,3 +1,3 @@
 ﻿Public Interface IShip
-    ReadOnly Property Direction As Long
+    Property Direction As Long
 End Interface

@@ -4,5 +4,5 @@
         Direction = 0L
     End Sub
 
-    Public ReadOnly Property Direction As Long Implements IShip.Direction
+    Public Property Direction As Long Implements IShip.Direction
 End Class

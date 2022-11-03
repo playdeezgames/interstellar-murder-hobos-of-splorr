@@ -46,7 +46,20 @@ Public Class Root
         shipEntity.Add(gridEntity)
         stage.Add(shipEntity)
     End Sub
+    Private oldKeyboardState As New KeyboardState
+    Private keyboardState As New KeyboardState
     Protected Overrides Sub Update(gameTime As GameTime)
+        oldKeyboardState = keyboardState
+        keyboardState = Keyboard.GetState()
+        Dim pressedKeys As New HashSet(Of Keys)(
+            keyboardState.GetPressedKeys().
+            Where(Function(x) oldKeyboardState.IsKeyUp(x)))
+        If pressedKeys.Contains(Keys.Right) Then
+            world.PlayerShip.Direction += 1L
+        End If
+        If pressedKeys.Contains(Keys.Left) Then
+            world.PlayerShip.Direction -= 1L
+        End If
         stage.Update(gameTime.ElapsedGameTime)
     End Sub
     Protected Overrides Sub Draw(gameTime As GameTime)
