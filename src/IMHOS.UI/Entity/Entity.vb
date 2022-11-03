@@ -19,8 +19,4 @@
         MyBase.Draw(renderer)
         sprite.Draw(renderer, Position, color, rotation)
     End Sub
-
-    Public Overrides Sub Update(delta As TimeSpan)
-        MyBase.Update(delta)
-    End Sub
 End Class
