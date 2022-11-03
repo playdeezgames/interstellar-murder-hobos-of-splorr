@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>IMHOS.Domain</RootNamespace>
+    <RootNamespace>IMHOS.Data</RootNamespace>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OptionStrict>On</OptionStrict>
   </PropertyGroup>
@@ -13,13 +13,5 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\IMHOS.Data\IMHOS.Data.vbproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Import Include="IMHOS.Data" />
-  </ItemGroup>
 
 </Project>
