@@ -9,9 +9,9 @@
             For row = -size To size
                 If Math.Abs(column + row) <= size Then
                     Dim xy As (Single, Single) = (plotter.PlotX(column, row), plotter.PlotY(column, row))
-                    Dim entity = New Entity(
+                    Dim entity = New SpriteEntity(
                         Me,
-                        sprite.ToReadOnlyValueSource,
+                        sprite,
                         xy,
                         color,
                         0.0F)
