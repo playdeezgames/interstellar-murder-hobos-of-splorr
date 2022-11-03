@@ -7,10 +7,10 @@
     Sub New(
            parent As IEntity,
            sprite As IReadValueSource(Of ISprite),
-           relativePosition As IReadValueSource(Of (Single, Single)),
+           offset As (Single, Single),
            color As IReadValueSource(Of (Byte, Byte, Byte, Byte)),
            rotation As IReadValueSource(Of Single))
-        MyBase.New(parent, relativePosition)
+        MyBase.New(parent, offset)
         Me.sprite = sprite
         Me.color = color
         Me.rotation = rotation

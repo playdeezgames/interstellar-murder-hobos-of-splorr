@@ -1,16 +1,16 @@
 ﻿Public MustInherit Class BaseEntity
     Implements IEntity
     Protected parent As IEntity
-    Protected relativePosition As IReadValueSource(Of (Single, Single))
-    Sub New(parent As IEntity, relativePosition As IReadValueSource(Of (Single, Single)))
+    Protected offset As (Single, Single)
+    Sub New(parent As IEntity, offset As (Single, Single))
         Me.parent = parent
-        Me.relativePosition = relativePosition
+        Me.offset = offset
     End Sub
 
     Public ReadOnly Property Position As (Single, Single) Implements IEntity.Position
         Get
             Dim parentPosition = If(parent IsNot Nothing, parent.Position, (0.0F, 0.0F))
-            Return (parentPosition.Item1 + relativePosition.Read.Item1, parentPosition.Item2 + relativePosition.Read.Item2)
+            Return (parentPosition.Item1 + offset.Item1, parentPosition.Item2 + offset.Item2)
         End Get
     End Property
 

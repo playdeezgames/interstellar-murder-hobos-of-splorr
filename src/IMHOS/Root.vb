@@ -8,11 +8,11 @@ Public Class Root
     Private textureRegions As ITextureRegions
     Private sprites As ISprites
     Private instances As IEntities
-    Private shipPosition As IWriteValueSource(Of (Single, Single))
+    Private shipPosition As (Single, Single)
     Private shipRotation As IWriteValueSource(Of Single)
     Private shipColor As IWriteValueSource(Of (Byte, Byte, Byte, Byte))
     Private shipSprite As IWriteValueSource(Of ISprite)
-    Private gridOffset As IWriteValueSource(Of (Single, Single))
+    Private gridOffset As (Single, Single)
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
     End Sub
@@ -42,11 +42,11 @@ Public Class Root
             {Constants.Sprites.Hex, (Constants.TextureRegions.Hex, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)},
             {Constants.Sprites.Ship, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
         })
-        gridOffset = New ReadWriteValueSource(Of (Single, Single))((0.0F, 0.0F))
+        gridOffset = (0.0F, 0.0F)
         Dim plotter As IPlotter = New HexPlotter(Constants.Plotter.Width, Constants.Plotter.Height)
         shipRotation = New ReadWriteValueSource(Of Single)(0.0F)
         shipColor = New ReadWriteValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255))
-        shipPosition = New ReadWriteValueSource(Of (Single, Single))((0.0F, 0.0F))
+        shipPosition = (0.0F, 0.0F)
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
         instances = New Entities
         Dim gridEntity = New HexGridEntity(Nothing, gridOffset, plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
@@ -54,15 +54,8 @@ Public Class Root
 
         Dim shipEntity = New Entity(gridEntity.Hex(Constants.HexGrid.Size - 1L, Constants.HexGrid.Size - 1L), shipSprite, shipPosition, shipColor, shipRotation)
         instances.Add(shipEntity)
-
-        gridOffset.Write((Constants.Screen.Width / 2.0F - shipEntity.Position.Item1, Constants.Screen.Height / 2.0F - shipEntity.Position.Item2))
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
-        Dim keyboardState = Keyboard.GetState()
-        Dim deltaX = If(keyboardState.IsKeyDown(Keys.Left), 1L, 0L) + If(keyboardState.IsKeyDown(Keys.Right), -1L, 0L)
-        Dim deltaY = If(keyboardState.IsKeyDown(Keys.Up), 1L, 0L) + If(keyboardState.IsKeyDown(Keys.Down), -1L, 0L)
-        Dim position = gridOffset.Read
-        gridOffset.Write((position.Item1 + deltaX, position.Item2 + deltaY))
     End Sub
     Protected Overrides Sub Draw(gameTime As GameTime)
         MyBase.Draw(gameTime)

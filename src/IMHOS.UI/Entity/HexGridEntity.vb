@@ -2,8 +2,8 @@
     Inherits BaseEntity
     Implements IHexGridEntity
     Private children As New Dictionary(Of (Long, Long), IEntity)
-    Sub New(parent As IEntity, relativePosition As IReadValueSource(Of (Single, Single)), plotter As IPlotter, size As Long, sprite As ISprite)
-        MyBase.New(parent, relativePosition)
+    Sub New(parent As IEntity, offset As (Single, Single), plotter As IPlotter, size As Long, sprite As ISprite)
+        MyBase.New(parent, offset)
         Dim columns = size * 2L - 1L
         Dim rows = size * 2L - 1L
         Dim color As (Byte, Byte, Byte, Byte) = (255, 255, 255, 255)
@@ -14,7 +14,7 @@
                     Dim entity = New Entity(
                         Me,
                         sprite.ToReadOnlyValueSource,
-                        xy.ToReadOnlyValueSource,
+                        xy,
                         color.ToReadOnlyValueSource,
                         0.0F.ToReadOnlyValueSource)
                     children.Add((column, row), entity)
