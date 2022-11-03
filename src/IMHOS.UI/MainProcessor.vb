@@ -4,11 +4,11 @@ Public Class MainProcessor
     Implements IProcessor
     Private terminal As ITerminal
     Private playProcessor As IStageProcessor
-    Private data As IStageData
-    Sub New(terminal As ITerminal, playProcessor As IStageProcessor, data As IStageData)
+    Private factory As IStageFactory
+    Sub New(terminal As ITerminal, playProcessor As IStageProcessor, factory As IStageFactory)
         Me.terminal = terminal
         Me.playProcessor = playProcessor
-        Me.data = data
+        Me.factory = factory
     End Sub
 
     Public Sub Run() Implements IProcessor.Run
@@ -31,7 +31,7 @@ Public Class MainProcessor
     End Sub
 
     Private Sub StartGame()
-        Dim world As IStage = New Stage(data)
+        Dim world As IStage = factory.CreateStage()
         playProcessor.Run(world)
     End Sub
 

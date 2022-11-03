@@ -1,28 +1,29 @@
 ﻿Imports IMHOS.Data
 
 Public Class MainProcessor_should
-    Private Sub WithSubject(stuffToDo As Action(Of IProcessor, Mock(Of ITerminal), Mock(Of IStageProcessor), Mock(Of IStageData)), choices As String())
+    Private Sub WithSubject(stuffToDo As Action(Of IProcessor, Mock(Of ITerminal), Mock(Of IStageProcessor), Mock(Of IStageFactory)), choices As String())
         WithTerminal(
             Sub(terminal)
                 Dim playProcessor As New Mock(Of IStageProcessor)
-                Dim data As New Mock(Of IStageData)
-                Dim subject As IProcessor = New MainProcessor(terminal.Object, playProcessor.Object, data.Object)
-                stuffToDo(subject, terminal, playProcessor, data)
+                Dim factory As New Mock(Of IStageFactory)
+                Dim subject As IProcessor = New MainProcessor(terminal.Object, playProcessor.Object, factory.Object)
+                stuffToDo(subject, terminal, playProcessor, factory)
                 playProcessor.VerifyNoOtherCalls()
-                data.VerifyNoOtherCalls()
+                factory.Verify(Function(x) x.CreateStage())
+                factory.VerifyNoOtherCalls()
             End Sub, choices)
     End Sub
     <Fact>
     Sub instantiate()
         WithSubject(
-            Sub(subject, terminal, playProcessor, data)
+            Sub(subject, terminal, playProcessor, factory)
                 subject.ShouldNotBeNull
             End Sub, {})
     End Sub
     <Fact>
     Sub run()
         WithSubject(
-            Sub(subject, terminal, playProcessor, data)
+            Sub(subject, terminal, playProcessor, factory)
                 subject.Run()
                 terminal.Verify(Sub(x) x.Clear())
                 terminal.Verify(Function(x) x.Choose(It.IsAny(Of String), It.IsAny(Of String())))
