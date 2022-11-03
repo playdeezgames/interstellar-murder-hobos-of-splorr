@@ -41,4 +41,19 @@
                 subject.Update(New TimeSpan(1L))
             End Sub)
     End Sub
+    <Fact>
+    Sub read_offset()
+        WithSubject(
+            Sub(subject, sprite, color, rotation)
+                subject.Offset.ShouldBe((0.0F, 1.0F))
+            End Sub)
+    End Sub
+    <Fact>
+    Sub write_offset()
+        WithSubject(
+            Sub(subject, sprite, color, rotation)
+                subject.Offset = (1.0F, 2.0F)
+                subject.Offset.ShouldBe((1.0F, 2.0F))
+            End Sub)
+    End Sub
 End Class
