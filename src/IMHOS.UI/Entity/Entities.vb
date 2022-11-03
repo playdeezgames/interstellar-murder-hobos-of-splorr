@@ -1,9 +1,9 @@
 ﻿Public Class Entities
     Implements IEntities
     Private ReadOnly children As New List(Of IEntity)
-    Function Add(instance As IEntity) As Long Implements IEntities.Add
+    Function Add(child As IEntity) As Long Implements IEntities.Add
         Dim id = children.LongCount
-        children.Add(instance)
+        children.Add(child)
         Return id
     End Function
     Function Read(id As Long) As IEntity Implements IEntities.Read
