@@ -7,13 +7,28 @@
 
     Public Sub Run() Implements IProcessor.Run
         TitleScreen()
-        terminal.Clear()
-        terminal.Choose("[olive]Main Menu:[/]", "Quit")
+        MainMenu()
     End Sub
+
+    Private Sub MainMenu()
+        terminal.Clear()
+        Dim done = False
+        While Not done
+            Dim answer = terminal.Choose("[olive]Main Menu:[/]", Constants.Prompts.Quit)
+            Select Case answer
+                Case Constants.Prompts.Quit
+                    done = ConfirmQuit()
+            End Select
+        End While
+    End Sub
+
+    Private Function ConfirmQuit() As Boolean
+        Return True
+    End Function
 
     Private Sub TitleScreen()
         terminal.Clear()
-        terminal.WriteLine("Hello, world!")
-        terminal.Choose(String.Empty, "Ok")
+        terminal.WriteLine("Interstellar Murder Hobos of SPLORR!!")
+        terminal.Choose(String.Empty, Constants.Prompts.Ok)
     End Sub
 End Class
