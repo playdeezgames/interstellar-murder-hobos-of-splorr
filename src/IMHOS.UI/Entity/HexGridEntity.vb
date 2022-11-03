@@ -13,7 +13,7 @@
                         Me,
                         sprite.ToReadOnlyValueSource,
                         xy,
-                        color.ToReadOnlyValueSource,
+                        color,
                         0.0F)
                     table((column, row)) = Add(entity)
                 End If
