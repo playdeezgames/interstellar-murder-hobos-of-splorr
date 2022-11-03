@@ -17,9 +17,10 @@
     Sub run()
         WithSubject(
             Sub(subject, terminal)
-                Dim world As New Mock(Of IStage)
-                subject.Run(world.Object)
-                world.VerifyNoOtherCalls()
+                Dim stage As New Mock(Of IStage)
+                subject.Run(stage.Object)
+                stage.VerifyGet(Function(x) x.LeadActor)
+                stage.VerifyNoOtherCalls()
                 terminal.Verify(Sub(x) x.WriteLine(It.IsAny(Of String)))
                 terminal.Verify(Function(x) x.Choose(It.IsAny(Of String), It.IsAny(Of String())))
                 terminal.Verify(Sub(x) x.Clear())
