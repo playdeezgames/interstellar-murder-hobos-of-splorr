@@ -1,10 +1,14 @@
-﻿Public Class MainProcessor
+﻿Imports IMHOS.Data
+
+Public Class MainProcessor
     Implements IProcessor
     Private terminal As ITerminal
     Private playProcessor As IStageProcessor
-    Sub New(terminal As ITerminal, playProcessor As IStageProcessor)
+    Private data As IStageData
+    Sub New(terminal As ITerminal, playProcessor As IStageProcessor, data As IStageData)
         Me.terminal = terminal
         Me.playProcessor = playProcessor
+        Me.data = data
     End Sub
 
     Public Sub Run() Implements IProcessor.Run
@@ -27,7 +31,7 @@
     End Sub
 
     Private Sub StartGame()
-        Dim world As IStage = New Stage
+        Dim world As IStage = New Stage(data)
         playProcessor.Run(world)
     End Sub
 

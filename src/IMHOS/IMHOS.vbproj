@@ -17,6 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Import Include="IMHOS.Data" />
     <Import Include="IMHOS.Domain" />
     <Import Include="IMHOS.My" />
     <Import Include="IMHOS.UI" />

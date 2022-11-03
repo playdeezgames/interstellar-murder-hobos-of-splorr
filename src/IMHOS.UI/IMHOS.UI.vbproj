@@ -7,6 +7,7 @@
     <ProjectReference Include="..\IMHOS.Domain\IMHOS.Domain.vbproj" />
   </ItemGroup>
   <ItemGroup>
+    <Import Include="IMHOS.Data" />
     <Import Include="IMHOS.Domain" />
   </ItemGroup>
 </Project>
