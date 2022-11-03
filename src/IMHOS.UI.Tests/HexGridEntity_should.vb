@@ -4,7 +4,7 @@
                     Mock(Of ISprite)))
         Dim plotter As New Mock(Of IPlotter)
         Dim sprite As New Mock(Of ISprite)
-        Dim subject As IHexGridEntity = New HexGridEntity(Nothing, (0.0F, 1.0F), plotter.Object, 1L, sprite.Object)
+        Dim subject As IHexGridEntity = New HexGridEntity(Nothing, (0.0F, 1.0F), plotter.Object, 0L, sprite.Object)
         stuffToDo(subject, plotter, sprite)
         plotter.VerifyNoOtherCalls()
         sprite.VerifyNoOtherCalls()

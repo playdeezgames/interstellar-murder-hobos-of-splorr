@@ -49,10 +49,10 @@ Public Class Root
         shipPosition = (0.0F, 0.0F)
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
         stage = New Entities(Nothing, (Constants.Screen.Width / 2.0F, Constants.Screen.Height / 2.0F))
-        Dim gridEntity = New HexGridEntity(Nothing, gridOffset, plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
-        stage.Add(gridEntity)
 
         Dim shipEntity = New Entity(stage, shipSprite, shipPosition, shipColor, shipRotation)
+        Dim gridEntity = New HexGridEntity(shipEntity, gridOffset, plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
+        shipEntity.Add(gridEntity)
         stage.Add(shipEntity)
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)

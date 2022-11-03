@@ -19,7 +19,7 @@
             child.Value.Update(delta)
         Next
     End Sub
-    Private ReadOnly children As New Dictionary(Of Guid, IEntity)
+    Protected ReadOnly children As New Dictionary(Of Guid, IEntity)
     Function Add(child As IEntity) As Guid Implements IEntity.Add
         Dim id = Guid.NewGuid
         children.Add(id, child)
