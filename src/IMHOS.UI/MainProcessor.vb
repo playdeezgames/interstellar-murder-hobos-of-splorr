@@ -23,7 +23,7 @@
     End Sub
 
     Private Function ConfirmQuit() As Boolean
-        Return True
+        Return terminal.Choose("[red]Are you sure you want to quit?[/]", Constants.Prompts.No, Constants.Prompts.Yes) = Constants.Prompts.Yes
     End Function
 
     Private Sub TitleScreen()

@@ -23,6 +23,6 @@
                 terminal.Verify(Sub(x) x.Clear())
                 terminal.Verify(Function(x) x.Choose(It.IsAny(Of String), It.IsAny(Of String())))
                 terminal.Verify(Sub(x) x.WriteLine(It.IsAny(Of String)))
-            End Sub, "Ok", "Quit")
+            End Sub, "Ok", "Quit", "Yes")
     End Sub
 End Class
