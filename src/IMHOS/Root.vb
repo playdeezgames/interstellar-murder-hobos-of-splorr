@@ -8,8 +8,6 @@ Public Class Root
     Private textureRegions As ITextureRegions
     Private sprites As ISprites
     Private stage As IEntity
-    Private shipPosition As (Single, Single)
-    Private shipRotation As IWriteValueSource(Of Single)
     Private shipColor As IWriteValueSource(Of (Byte, Byte, Byte, Byte))
     Private shipSprite As IWriteValueSource(Of ISprite)
     Private gridOffset As (Single, Single)
@@ -44,13 +42,11 @@ Public Class Root
         })
         gridOffset = (0.0F, 0.0F)
         Dim plotter As IPlotter = New HexPlotter(Constants.Plotter.Width, Constants.Plotter.Height)
-        shipRotation = New ReadWriteValueSource(Of Single)(0.0F)
         shipColor = New ReadWriteValueSource(Of (Byte, Byte, Byte, Byte))((0, 0, 255, 255))
-        shipPosition = (0.0F, 0.0F)
         shipSprite = New ReadWriteValueSource(Of ISprite)(sprites.Read(Constants.Sprites.Ship))
         stage = New Entities(Nothing, (Constants.Screen.Width / 2.0F, Constants.Screen.Height / 2.0F))
 
-        Dim shipEntity = New Entity(stage, shipSprite, shipPosition, shipColor, shipRotation)
+        Dim shipEntity = New Entity(stage, shipSprite, (0.0F, 0.0F), shipColor, 0.0F)
         Dim gridEntity = New HexGridEntity(shipEntity, gridOffset, plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
         shipEntity.Add(gridEntity)
         stage.Add(shipEntity)

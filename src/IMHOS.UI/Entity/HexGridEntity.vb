@@ -14,7 +14,7 @@
                         sprite.ToReadOnlyValueSource,
                         xy,
                         color.ToReadOnlyValueSource,
-                        0.0F.ToReadOnlyValueSource)
+                        0.0F)
                     table((column, row)) = Add(entity)
                 End If
             Next
