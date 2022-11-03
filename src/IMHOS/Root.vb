@@ -8,7 +8,7 @@ Public Class Root
     Private textureRegions As ITextureRegions
     Private sprites As ISprites
     Private stage As IEntity
-    Private gridOffset As (Single, Single)
+    Private world As New World
     Sub New()
         graphics = New GraphicsDeviceManager(Me)
     End Sub
@@ -38,12 +38,11 @@ Public Class Root
             {Constants.Sprites.Hex, (Constants.TextureRegions.Hex, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)},
             {Constants.Sprites.Ship, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
         })
-        gridOffset = (0.0F, 0.0F)
         Dim plotter As IPlotter = New HexPlotter(Constants.Plotter.Width, Constants.Plotter.Height)
         stage = New Entities(Nothing, (Constants.Screen.Width / 2.0F, Constants.Screen.Height / 2.0F))
 
         Dim shipEntity = New SpriteEntity(stage, sprites.Read(Constants.Sprites.Ship), (0.0F, 0.0F), (0, 0, 255, 255), 0.0F)
-        Dim gridEntity = New HexGridEntity(shipEntity, gridOffset, plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
+        Dim gridEntity = New HexGridEntity(shipEntity, (0.0F, 0.0F), plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
         shipEntity.Add(gridEntity)
         stage.Add(shipEntity)
     End Sub

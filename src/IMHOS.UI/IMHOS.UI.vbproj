@@ -3,4 +3,10 @@
     <RootNamespace>IMHOS.UI</RootNamespace>
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IMHOS.Domain\IMHOS.Domain.vbproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="IMHOS.Domain" />
+  </ItemGroup>
 </Project>
