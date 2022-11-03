@@ -9,7 +9,6 @@ Public Class MainProcessor_should
                 Dim subject As IProcessor = New MainProcessor(terminal.Object, playProcessor.Object, factory.Object)
                 stuffToDo(subject, terminal, playProcessor, factory)
                 playProcessor.VerifyNoOtherCalls()
-                factory.Verify(Function(x) x.CreateStage())
                 factory.VerifyNoOtherCalls()
             End Sub, choices)
     End Sub
@@ -28,6 +27,7 @@ Public Class MainProcessor_should
                 terminal.Verify(Sub(x) x.Clear())
                 terminal.Verify(Function(x) x.Choose(It.IsAny(Of String), It.IsAny(Of String())))
                 terminal.Verify(Sub(x) x.WriteLine(It.IsAny(Of String)))
+                factory.Verify(Function(x) x.CreateStage())
                 playProcessor.Verify(Sub(x) x.Run(It.IsAny(Of IStage)))
             End Sub, {"Ok", "Start", "Abandon Game", "Yes", "Quit", "Yes"})
     End Sub
