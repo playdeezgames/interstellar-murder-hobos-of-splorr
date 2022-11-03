@@ -1,11 +1,11 @@
 ﻿Public Class PlayProcessor
-    Implements IWorldProcessor
+    Implements IStageProcessor
     Private terminal As ITerminal
     Sub New(terminal As ITerminal)
         Me.terminal = terminal
     End Sub
 
-    Public Sub Run(world As IWorld) Implements IWorldProcessor.Run
+    Public Sub Run(stage As IStage) Implements IStageProcessor.Run
         Dim done = False
         While Not done
             terminal.Clear()

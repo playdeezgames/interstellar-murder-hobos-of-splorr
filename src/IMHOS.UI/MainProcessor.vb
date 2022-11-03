@@ -1,8 +1,8 @@
 ﻿Public Class MainProcessor
     Implements IProcessor
     Private terminal As ITerminal
-    Private playProcessor As IWorldProcessor
-    Sub New(terminal As ITerminal, playProcessor As IWorldProcessor)
+    Private playProcessor As IStageProcessor
+    Sub New(terminal As ITerminal, playProcessor As IStageProcessor)
         Me.terminal = terminal
         Me.playProcessor = playProcessor
     End Sub
@@ -27,7 +27,7 @@
     End Sub
 
     Private Sub StartGame()
-        Dim world As IWorld = New World
+        Dim world As IStage = New Stage
         playProcessor.Run(world)
     End Sub
 

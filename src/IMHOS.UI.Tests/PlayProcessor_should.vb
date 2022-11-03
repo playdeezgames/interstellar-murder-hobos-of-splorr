@@ -1,5 +1,5 @@
 ﻿Public Class PlayProcessor_should
-    Private Sub WithSubject(stuffToDo As Action(Of IWorldProcessor, Mock(Of ITerminal)), choices As String())
+    Private Sub WithSubject(stuffToDo As Action(Of IStageProcessor, Mock(Of ITerminal)), choices As String())
         WithTerminal(
             Sub(terminal)
                 Dim subject = New PlayProcessor(terminal.Object)
@@ -17,7 +17,7 @@
     Sub run()
         WithSubject(
             Sub(subject, terminal)
-                Dim world As New Mock(Of IWorld)
+                Dim world As New Mock(Of IStage)
                 subject.Run(world.Object)
                 world.VerifyNoOtherCalls()
                 terminal.Verify(Sub(x) x.WriteLine(It.IsAny(Of String)))

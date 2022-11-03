@@ -1,8 +1,8 @@
 ﻿Public Class MainProcessor_should
-    Private Sub WithSubject(stuffToDo As Action(Of IProcessor, Mock(Of ITerminal), Mock(Of IWorldProcessor)), choices As String())
+    Private Sub WithSubject(stuffToDo As Action(Of IProcessor, Mock(Of ITerminal), Mock(Of IStageProcessor)), choices As String())
         WithTerminal(
             Sub(terminal)
-                Dim playProcessor As New Mock(Of IWorldProcessor)
+                Dim playProcessor As New Mock(Of IStageProcessor)
                 Dim subject As IProcessor = New MainProcessor(terminal.Object, playProcessor.Object)
                 stuffToDo(subject, terminal, playProcessor)
                 playProcessor.VerifyNoOtherCalls()
@@ -23,7 +23,7 @@
                 terminal.Verify(Sub(x) x.Clear())
                 terminal.Verify(Function(x) x.Choose(It.IsAny(Of String), It.IsAny(Of String())))
                 terminal.Verify(Sub(x) x.WriteLine(It.IsAny(Of String)))
-                playProcessor.Verify(Sub(x) x.Run(It.IsAny(Of IWorld)))
+                playProcessor.Verify(Sub(x) x.Run(It.IsAny(Of IStage)))
             End Sub, {"Ok", "Start", "Abandon Game", "Yes", "Quit", "Yes"})
     End Sub
 End Class
