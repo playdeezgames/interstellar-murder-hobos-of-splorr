@@ -56,12 +56,17 @@ Public Class Root
         instances.Add(shipEntity)
     End Sub
     Protected Overrides Sub Update(gameTime As GameTime)
+
+        'instances.Update(gameTime.ElapsedGameTime)
+
     End Sub
     Protected Overrides Sub Draw(gameTime As GameTime)
         MyBase.Draw(gameTime)
         GraphicsDevice.Clear(Color.Black)
         spriteBatch.Begin()
+
         instances.Draw(spriteBatch)
+
         spriteBatch.End()
     End Sub
 End Class
