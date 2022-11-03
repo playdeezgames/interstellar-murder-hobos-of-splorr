@@ -41,7 +41,7 @@ Public Class Root
         Dim plotter As IPlotter = New HexPlotter(Constants.Plotter.Width, Constants.Plotter.Height)
         stage = New Entities(Nothing, (Constants.Screen.Width / 2.0F, Constants.Screen.Height / 2.0F))
 
-        Dim shipEntity = New SpriteEntity(stage, sprites.Read(Constants.Sprites.Ship), (0.0F, 0.0F), (0, 0, 255, 255), 0.0F)
+        Dim shipEntity = New ShipEntity(stage, sprites.Read(Constants.Sprites.Ship), (0.0F, 0.0F), (0, 0, 255, 255), 0.0F)
         Dim gridEntity = New HexGridEntity(shipEntity, (0.0F, 0.0F), plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
         shipEntity.Add(gridEntity)
         stage.Add(shipEntity)

@@ -1,4 +1,4 @@
-﻿Public Class Entity_should
+﻿Public Class SpriteEntity_should
     Private Sub WithSubject(
                            stuffToDo As Action(Of IEntity,
                            Mock(Of ISprite)))
