@@ -4,8 +4,6 @@ Public Class Root
     Inherits Game
     Private ReadOnly graphics As GraphicsDeviceManager
     Private spriteBatch As SpriteBatch
-    Private textures As ITextures
-    Private textureRegions As ITextureRegions
     Private sprites As ISprites
     Private stage As IEntity
     Private world As IWorld = New World
@@ -23,45 +21,52 @@ Public Class Root
     Protected Overrides Sub LoadContent()
         MyBase.LoadContent()
         spriteBatch = New SpriteBatch(GraphicsDevice)
-        textures = New Textures(GraphicsDevice, New Dictionary(Of Long, String) From
-        {
-            {Constants.Textures.Hex, "Content/hex.png"},
-            {Constants.Textures.Ship, "Content/ship.png"}
-        })
-        textureRegions = New TextureRegions(textures, New Dictionary(Of Long, (Long, ((Integer, Integer), (Integer, Integer))?)) From
-        {
-            {Constants.TextureRegions.Hex, (Constants.Textures.Hex, Nothing)},
-            {Constants.TextureRegions.Ship, (Constants.Textures.Ship, Nothing)}
-        })
-        sprites = New UI.Sprites(textureRegions, New Dictionary(Of Long, (Long, (Single, Single), (Single, Single), (Boolean, Boolean), Single)) From
-        {
-            {Constants.Sprites.Hex, (Constants.TextureRegions.Hex, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)},
-            {Constants.Sprites.Ship, (Constants.TextureRegions.Ship, (32.0F, 32.0F), (1.0F, 1.0F), (False, False), 0)}
-        })
-        Dim plotter As IPlotter = New HexPlotter(Constants.Plotter.Width, Constants.Plotter.Height)
+        sprites = New Sprites(
+            New TextureRegions(
+                New Textures(
+                    GraphicsDevice,
+                    Constants.Textures.Source),
+                Constants.TextureRegions.Source),
+            Constants.Sprites.Source)
         stage = New Entities(Nothing, (Constants.Screen.Width / 2.0F, Constants.Screen.Height / 2.0F))
 
         Dim shipEntity = New ShipEntity(world.PlayerShip, stage, sprites.Read(Constants.Sprites.Ship), (0.0F, 0.0F), (0, 0, 255, 255), 0.0F)
-        Dim gridEntity = New HexGridEntity(shipEntity, (0.0F, 0.0F), plotter, Constants.HexGrid.Size, sprites.Read(Constants.Sprites.Hex))
-        shipEntity.Add(gridEntity)
         stage.Add(shipEntity)
     End Sub
     Private oldKeyboardState As New KeyboardState
     Private keyboardState As New KeyboardState
+    Private pressedKeys As New HashSet(Of Keys)
+    Private keyHandlers As New Dictionary(Of Keys, Action(Of IWorld)) From
+        {
+            {Keys.Left, Sub(world)
+                            world.PlayerShip.Direction -= 1L
+                        End Sub},
+            {Keys.Right, Sub(world)
+                             world.PlayerShip.Direction += 1L
+                         End Sub}
+        }
     Protected Overrides Sub Update(gameTime As GameTime)
+        stage.Update(gameTime.ElapsedGameTime)
+        UpdatePressedKeys()
+        HandlePressedKeys()
+    End Sub
+
+    Private Sub HandlePressedKeys()
+        For Each pressedKey In pressedKeys
+            If keyHandlers.ContainsKey(pressedKey) Then
+                keyHandlers(pressedKey)(world)
+            End If
+        Next
+    End Sub
+
+    Private Sub UpdatePressedKeys()
         oldKeyboardState = keyboardState
         keyboardState = Keyboard.GetState()
-        Dim pressedKeys As New HashSet(Of Keys)(
+        pressedKeys = New HashSet(Of Keys)(
             keyboardState.GetPressedKeys().
             Where(Function(x) oldKeyboardState.IsKeyUp(x)))
-        If pressedKeys.Contains(Keys.Right) Then
-            world.PlayerShip.Direction += 1L
-        End If
-        If pressedKeys.Contains(Keys.Left) Then
-            world.PlayerShip.Direction -= 1L
-        End If
-        stage.Update(gameTime.ElapsedGameTime)
     End Sub
+
     Protected Overrides Sub Draw(gameTime As GameTime)
         MyBase.Draw(gameTime)
         GraphicsDevice.Clear(Color.Black)

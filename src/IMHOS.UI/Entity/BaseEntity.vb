@@ -1,6 +1,6 @@
 ﻿Public MustInherit Class BaseEntity
     Implements IEntity
-    Protected parent As IEntity
+    Protected parent As IEntity = Nothing
     Sub New(parent As IEntity, offset As (Single, Single), rotation As Single)
         Me.parent = parent
         Me.Offset = offset
