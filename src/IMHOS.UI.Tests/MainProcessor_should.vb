@@ -1,7 +1,7 @@
 ﻿Public Class MainProcessor_should
-    Private Sub WithSubject(stuffToDo As Action(Of IMainProcessor, Mock(Of ITerminal)))
+    Private Sub WithSubject(stuffToDo As Action(Of IProcessor, Mock(Of ITerminal)))
         Dim terminal As New Mock(Of ITerminal)
-        Dim subject As IMainProcessor = New MainProcessor(terminal.Object)
+        Dim subject As IProcessor = New MainProcessor(terminal.Object)
         stuffToDo(subject, terminal)
         terminal.VerifyNoOtherCalls()
     End Sub
