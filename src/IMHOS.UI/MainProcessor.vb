@@ -31,26 +31,9 @@
         playProcessor.Run(world)
     End Sub
 
-    Private Sub PlayGame(world As IWorld)
-        Dim done = False
-        While Not done
-            terminal.Clear()
-            terminal.WriteLine("Playing the Game!")
-            Select Case terminal.Choose("[olive]Now What?[/]", Constants.Prompts.AbandonGame)
-                Case Constants.Prompts.AbandonGame
-                    done = ConfirmAbandon()
-            End Select
-        End While
-        terminal.Clear()
-    End Sub
-    Private Function ConfirmAbandon() As Boolean
-        Return Confirm("Are you sure you want to abandon the game?")
-    End Function
-
     Private Function ConfirmQuit() As Boolean
         Return Confirm("Are you sure you want to quit?")
     End Function
-
     Private Function Confirm(prompt As String) As Boolean
         Return terminal.Choose($"[red]{prompt}[/]", Constants.Prompts.No, Constants.Prompts.Yes) = Constants.Prompts.Yes
     End Function
