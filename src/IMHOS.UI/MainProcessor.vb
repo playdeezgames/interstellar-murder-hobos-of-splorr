@@ -14,12 +14,26 @@
         terminal.Clear()
         Dim done = False
         While Not done
-            Dim answer = terminal.Choose("[olive]Main Menu:[/]", Constants.Prompts.Quit)
+            Dim answer = terminal.Choose("[olive]Main Menu:[/]", Constants.Prompts.Start, Constants.Prompts.Quit)
             Select Case answer
+                Case Constants.Prompts.Start
+                    StartGame()
                 Case Constants.Prompts.Quit
                     done = ConfirmQuit()
             End Select
         End While
+    End Sub
+
+    Private Sub StartGame()
+        Dim world As IWorld = New World
+        PlayGame(world)
+    End Sub
+
+    Private Sub PlayGame(world As IWorld)
+        terminal.Clear()
+        terminal.WriteLine("Playing the Game!")
+        terminal.Choose("[olive]Now What?[/]", Constants.Prompts.AbandonGame)
+        terminal.Clear()
     End Sub
 
     Private Function ConfirmQuit() As Boolean
