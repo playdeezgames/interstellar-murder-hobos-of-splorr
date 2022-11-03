@@ -1,8 +1,10 @@
 ﻿Public Class MainProcessor
     Implements IProcessor
     Private terminal As ITerminal
-    Sub New(terminal As ITerminal)
+    Private playProcessor As IWorldProcessor
+    Sub New(terminal As ITerminal, playProcessor As IWorldProcessor)
         Me.terminal = terminal
+        Me.playProcessor = playProcessor
     End Sub
 
     Public Sub Run() Implements IProcessor.Run
@@ -26,7 +28,7 @@
 
     Private Sub StartGame()
         Dim world As IWorld = New World
-        PlayGame(world)
+        playProcessor.Run(world)
     End Sub
 
     Private Sub PlayGame(world As IWorld)

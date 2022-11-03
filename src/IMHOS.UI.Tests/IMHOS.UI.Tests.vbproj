@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <Import Include="EmptyFiles" />
+    <Import Include="IMHOS.Domain" />
     <Import Include="IMHOS.UI" />
     <Import Include="Microsoft.Win32.SafeHandles" />
     <Import Include="Moq" />
