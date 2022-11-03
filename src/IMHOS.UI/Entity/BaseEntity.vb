@@ -1,9 +1,10 @@
 ﻿Public MustInherit Class BaseEntity
     Implements IEntity
     Protected parent As IEntity
-    Sub New(parent As IEntity, offset As (Single, Single))
+    Sub New(parent As IEntity, offset As (Single, Single), rotation As Single)
         Me.parent = parent
-        Me.offset = offset
+        Me.Offset = offset
+        Me.Rotation = rotation
     End Sub
 
     Public ReadOnly Property Position As (Single, Single) Implements IEntity.Position
@@ -14,6 +15,7 @@
     End Property
 
     Public Property Offset As (Single, Single) Implements IEntity.Offset
+    Public Property Rotation As Single Implements IEntity.Rotation
 
     Public Overridable Sub Update(delta As TimeSpan) Implements IEntity.Update
         For Each child In children

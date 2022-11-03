@@ -3,7 +3,7 @@
     Implements IHexGridEntity
     Private ReadOnly table As New Dictionary(Of (Long, Long), Guid)
     Sub New(parent As IEntity, offset As (Single, Single), plotter As IPlotter, size As Long, sprite As ISprite)
-        MyBase.New(parent, offset)
+        MyBase.New(parent, offset, 0.0F)
         Dim color As (Byte, Byte, Byte, Byte) = (255, 255, 255, 255)
         For column = -size To size
             For row = -size To size

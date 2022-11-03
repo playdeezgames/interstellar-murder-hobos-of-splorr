@@ -6,4 +6,8 @@
         MyBase.New(parent, sprite, offset, color, rotation)
         Me.ship = ship
     End Sub
+    Public Overrides Sub Update(delta As TimeSpan)
+        MyBase.Update(delta)
+        rotation = CSng(CDbl(ship.Direction) * Math.PI / 3.0)
+    End Sub
 End Class

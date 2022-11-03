@@ -26,6 +26,7 @@ Public Class ShipEntity_should
         WithSubject(
             Sub(subject, sprite, ship)
                 subject.Update(New TimeSpan(1L))
+                ship.VerifyGet(Function(x) x.Direction)
             End Sub)
     End Sub
 End Class
