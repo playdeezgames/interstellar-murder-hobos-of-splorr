@@ -21,6 +21,11 @@ Public Class StageData_should
         Dim subject As IStageData = New StageData
         subject.LeadActor.ShouldNotBeNull
     End Sub
+    <Fact>
+    Sub have_vessel()
+        Dim subject As IStageData = New StageData
+        subject.Vessel.ShouldNotBeNull
+    End Sub
 End Class
 
 

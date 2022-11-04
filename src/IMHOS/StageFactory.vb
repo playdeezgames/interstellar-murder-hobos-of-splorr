@@ -5,11 +5,9 @@
         Me.data = data
     End Sub
     Public Function CreateStage() As IStage Implements IStageFactory.CreateStage
-        'create ship
-        Dim locationId = data.Location.Create("Yer Ship")
-        'create pilot
+        Dim vesselId = data.Vessel.Create("Yer Ship")
+        Dim locationId = data.Location.Create("Yer Pilot's Chair")
         Dim actorId = data.Actor.Create("You", locationId)
-        'set pilot as lead actor
         data.LeadActor.Write(actorId)
         Return New Stage(data)
     End Function
