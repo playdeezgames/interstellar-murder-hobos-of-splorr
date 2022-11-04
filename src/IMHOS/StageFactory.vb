@@ -7,6 +7,7 @@
     Public Function CreateStage() As IStage Implements IStageFactory.CreateStage
         Dim vesselId = data.Vessel.Create("Yer Ship")
         Dim locationId = data.Location.Create("Yer Pilot's Chair", vesselId)
+        Dim featureId = data.Feature.Create("Helm", locationId)
         Dim actorId = data.Actor.Create("You", locationId)
         data.LeadActor.Write(actorId)
         Return New Stage(data)
