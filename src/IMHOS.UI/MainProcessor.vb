@@ -1,7 +1,7 @@
 ﻿Imports IMHOS.Data
 
 Public Class MainProcessor
-    Implements IProcessor
+    Implements IMainProcessor
     Private terminal As ITerminal
     Private playProcessor As IPlayProcessor
     Private factory As IStageFactory
@@ -11,7 +11,7 @@ Public Class MainProcessor
         Me.factory = factory
     End Sub
 
-    Public Sub Run() Implements IProcessor.Run
+    Public Sub Run() Implements IMainProcessor.Run
         TitleScreen()
         MainMenu()
     End Sub

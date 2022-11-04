@@ -4,7 +4,7 @@ Module Program
         Dim playProcessor As IPlayProcessor = New PlayProcessor(terminal)
         Dim data As IStageData = New StageData
         Dim factory As IStageFactory = New StageFactory(data)
-        Dim mainProcessor As IProcessor = New MainProcessor(terminal, playProcessor, factory)
+        Dim mainProcessor As IMainProcessor = New MainProcessor(terminal, playProcessor, factory)
         mainProcessor.Run()
     End Sub
 End Module

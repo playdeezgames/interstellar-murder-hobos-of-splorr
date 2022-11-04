@@ -1,12 +1,12 @@
 ﻿Imports IMHOS.Data
 
 Public Class MainProcessor_should
-    Private Sub WithSubject(stuffToDo As Action(Of IProcessor, Mock(Of ITerminal), Mock(Of IPlayProcessor), Mock(Of IStageFactory)), choices As String())
+    Private Sub WithSubject(stuffToDo As Action(Of IMainProcessor, Mock(Of ITerminal), Mock(Of IPlayProcessor), Mock(Of IStageFactory)), choices As String())
         WithTerminal(
             Sub(terminal)
                 Dim playProcessor As New Mock(Of IPlayProcessor)
                 Dim factory As New Mock(Of IStageFactory)
-                Dim subject As IProcessor = New MainProcessor(terminal.Object, playProcessor.Object, factory.Object)
+                Dim subject As IMainProcessor = New MainProcessor(terminal.Object, playProcessor.Object, factory.Object)
                 stuffToDo(subject, terminal, playProcessor, factory)
                 playProcessor.VerifyNoOtherCalls()
                 factory.VerifyNoOtherCalls()
