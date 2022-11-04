@@ -8,10 +8,18 @@
         Return id
     End Function
 
-    Public Function ReadName(id As Guid) As String Implements IActorData.ReadName
+    Public Function ReadName(actorId As Guid) As String Implements IActorData.ReadName
         Dim record As (String, Guid) = (Nothing, Guid.Empty)
-        If table.TryGetValue(id, record) Then
+        If table.TryGetValue(actorId, record) Then
             Return record.Item1
+        End If
+        Return Nothing
+    End Function
+
+    Public Function ReadLocation(actorId As Guid) As Guid? Implements IActorData.ReadLocation
+        Dim record As (String, Guid) = (Nothing, Guid.Empty)
+        If table.TryGetValue(actorId, record) Then
+            Return record.Item2
         End If
         Return Nothing
     End Function

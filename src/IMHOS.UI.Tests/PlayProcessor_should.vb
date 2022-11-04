@@ -23,6 +23,7 @@
                 subject.Run(stage.Object)
 
                 actor.VerifyGet(Function(x) x.Name)
+                actor.VerifyGet(Function(x) x.Location)
                 actor.VerifyNoOtherCalls()
 
                 stage.VerifyGet(Function(x) x.LeadActor)

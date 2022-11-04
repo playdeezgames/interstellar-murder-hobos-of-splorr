@@ -9,6 +9,7 @@
         Dim done = False
         While Not done
             Dim lead As IActor = stage.LeadActor
+            Dim location As ILocation = lead.Location
             terminal.Clear()
             terminal.WriteLine($"Name: {lead.Name}")
             Select Case terminal.Choose("[olive]Now What?[/]", Constants.Prompts.AbandonGame)
