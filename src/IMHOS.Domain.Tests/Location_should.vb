@@ -28,7 +28,9 @@ Public Class Location_should
     Sub have_a_vessel()
         WithSubject(
             Sub(subject, data, id)
+                data.SetupGet(Function(x) x.Location).Returns((New Mock(Of ILocationData)).Object)
                 subject.Vessel.ShouldBeNull
+                data.Verify(Function(x) x.Location.ReadVessel(id))
             End Sub)
     End Sub
 End Class

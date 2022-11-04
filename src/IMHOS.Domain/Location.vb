@@ -14,7 +14,7 @@
 
     Public ReadOnly Property Vessel As IVessel Implements ILocation.Vessel
         Get
-            Return Nothing
+            Return Domain.Vessel.FromId(data, data.Location.ReadVessel(id))
         End Get
     End Property
 
