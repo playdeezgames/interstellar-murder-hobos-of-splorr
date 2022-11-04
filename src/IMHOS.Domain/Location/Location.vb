@@ -24,6 +24,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Features As IEnumerable(Of IFeature) Implements ILocation.Features
+        Get
+            Return data.Feature.ReadForLocation(id).Select(Function(x) Feature.FromId(data, x))
+        End Get
+    End Property
+
     Friend Shared Function FromId(data As IStageData, id As Guid?) As ILocation
         Return If(id.HasValue, New Location(data, id.Value), Nothing)
     End Function

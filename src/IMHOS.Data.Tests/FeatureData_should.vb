@@ -17,4 +17,10 @@
         Dim subject As IFeatureData = New FeatureData
         subject.CountForLocation(locationId).ShouldBe(0L)
     End Sub
+    <Fact>
+    Sub read_for_location()
+        Dim locationId = Guid.NewGuid
+        Dim subject As IFeatureData = New FeatureData
+        subject.ReadForLocation(locationId).ShouldBeEmpty
+    End Sub
 End Class
