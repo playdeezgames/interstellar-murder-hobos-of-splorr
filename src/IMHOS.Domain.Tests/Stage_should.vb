@@ -18,7 +18,9 @@ Public Class Stage_should
     Sub have_lead_actor()
         WithSubject(
             Sub(subject, data)
-                subject.LeadActor.ShouldNotBeNull
+                data.SetupGet(Function(x) x.LeadActor).Returns((New Mock(Of ILeadActorData)).Object)
+                subject.LeadActor.ShouldBeNull
+                data.Verify(Function(x) x.LeadActor.Read)
             End Sub)
     End Sub
 End Class

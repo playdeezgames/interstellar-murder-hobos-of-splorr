@@ -9,4 +9,9 @@
         Dim subject As ILeadActorData = New LeadActorData
         subject.Write(Guid.NewGuid)
     End Sub
+    <Fact>
+    Sub read()
+        Dim subject As ILeadActorData = New LeadActorData
+        subject.Read.ShouldBeNull
+    End Sub
 End Class
