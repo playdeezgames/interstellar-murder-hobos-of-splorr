@@ -1,9 +1,9 @@
 ﻿Public Class LocationData
+    Inherits BaseData
     Implements ILocationData
-    Private ReadOnly data As IStageData
     Private ReadOnly table As New Dictionary(Of Guid, String)
     Sub New(data As IStageData)
-        Me.data = data
+        MyBase.New(data)
     End Sub
     Public Function Create(name As String) As Guid Implements ILocationData.Create
         Dim id = Guid.NewGuid
