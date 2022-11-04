@@ -23,4 +23,10 @@
         Dim subject As IFeatureData = New FeatureData
         subject.ReadForLocation(locationId).ShouldBeEmpty
     End Sub
+    <Fact>
+    Sub read_name()
+        Dim featureId = Guid.NewGuid
+        Dim subject As IFeatureData = New FeatureData
+        subject.ReadName(featureId).ShouldBeNull
+    End Sub
 End Class

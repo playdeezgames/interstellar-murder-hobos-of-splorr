@@ -11,12 +11,14 @@
             Dim lead As IActor = stage.LeadActor
             Dim location As ILocation = lead.Location
             Dim vessel As IVessel = location.Vessel
+            Dim features = location.Features
             terminal.Clear()
             terminal.WriteLine($"Name: {lead.Name}")
             terminal.WriteLine($"Location: {location.Name}")
             terminal.WriteLine($"Vessel: {vessel.Name}")
             Dim choices As New List(Of String)
-            If location.HasFeatures Then
+            If features.Any Then
+                terminal.WriteLine($"Features: {String.Join(", ", features.Select(Function(x) x.Name))}")
                 choices.Add(Constants.Prompts.Interact)
             End If
             choices.Add(Constants.Prompts.AbandonGame)

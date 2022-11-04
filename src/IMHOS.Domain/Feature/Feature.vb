@@ -4,6 +4,13 @@
     Sub New(data As IStageData, id As Guid)
         MyBase.New(data, id)
     End Sub
+
+    Public ReadOnly Property Name As String Implements IFeature.Name
+        Get
+            Return data.Feature.ReadName(id)
+        End Get
+    End Property
+
     Friend Shared Function FromId(data As IStageData, id As Guid?) As IFeature
         Return If(id.HasValue, New Feature(data, id.Value), Nothing)
     End Function
