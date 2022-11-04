@@ -1,8 +1,9 @@
 ﻿Public Class StageData
     Implements IStageData
     Sub New()
-        Location = New LocationData(Me)
+        Actor = New ActorData
+        Location = New LocationData
     End Sub
-
+    Public ReadOnly Property Actor As IActorData Implements IStageData.Actor
     Public ReadOnly Property Location As ILocationData Implements IStageData.Location
 End Class

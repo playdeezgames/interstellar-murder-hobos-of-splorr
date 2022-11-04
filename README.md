@@ -2,15 +2,13 @@
 
 XYZ Interstellar Murder Hobos of SPLORR!! #Niche4Life
 
+* 005 - 20221104
 * 004 - 20221103
 * 003 - 20221102
 * 002 - 20221101
 * 001 - 20221031
 
-# Notes
+# Things to totally add into the game and not just leave here in a list to be forgotten about
 
-* N = # hexes on a side of the board
-* Columns = 2*N - 1
-* Rows = 2*N - 1
-* Hide hexes such that (X+Y) < N-1
-* Hide hexes such that (X+Y) > 3*N-3
+* Taxes
+

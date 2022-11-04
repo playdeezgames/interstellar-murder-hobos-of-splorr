@@ -8,6 +8,7 @@
         'create ship
         Dim locationId = data.Location.Create("Yer Ship")
         'create pilot
+        Dim actorId = data.Actor.Create("You")
         'set pilot as lead actor
         Return New Stage(data)
     End Function
