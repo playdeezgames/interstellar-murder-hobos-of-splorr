@@ -18,9 +18,16 @@
         WithSubject(
             Sub(subject, terminal)
                 Dim stage As New Mock(Of IStage)
+                Dim actor As New Mock(Of IActor)
+                stage.SetupGet(Function(x) x.LeadActor).Returns(actor.Object)
                 subject.Run(stage.Object)
+
+                actor.VerifyGet(Function(x) x.Name)
+                actor.VerifyNoOtherCalls()
+
                 stage.VerifyGet(Function(x) x.LeadActor)
                 stage.VerifyNoOtherCalls()
+
                 terminal.Verify(Sub(x) x.WriteLine(It.IsAny(Of String)))
                 terminal.Verify(Function(x) x.Choose(It.IsAny(Of String), It.IsAny(Of String())))
                 terminal.Verify(Sub(x) x.Clear())

@@ -8,9 +8,9 @@
     Public Sub Run(stage As IStage) Implements IStageProcessor.Run
         Dim done = False
         While Not done
-            terminal.Clear()
             Dim lead As IActor = stage.LeadActor
-            terminal.WriteLine("Playing the Game!")
+            terminal.Clear()
+            terminal.WriteLine($"Name: {lead.Name}")
             Select Case terminal.Choose("[olive]Now What?[/]", Constants.Prompts.AbandonGame)
                 Case Constants.Prompts.AbandonGame
                     done = ConfirmAbandon()
