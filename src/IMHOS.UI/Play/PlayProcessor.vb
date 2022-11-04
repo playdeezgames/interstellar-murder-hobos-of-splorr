@@ -1,8 +1,10 @@
 ﻿Public Class PlayProcessor
     Implements IPlayProcessor
     Private terminal As ITerminal
-    Sub New(terminal As ITerminal)
+    Private interactProcessor As IInteractProcessor
+    Sub New(terminal As ITerminal, interactProcessor As IInteractProcessor)
         Me.terminal = terminal
+        Me.interactProcessor = interactProcessor
     End Sub
 
     Public Sub Run(stage As IStage) Implements IPlayProcessor.Run

@@ -1,22 +1,25 @@
 ﻿Public Class PlayProcessor_should
-    Private Sub WithSubject(stuffToDo As Action(Of IPlayProcessor, Mock(Of ITerminal)), choices As String())
+    Private Sub WithSubject(
+                           stuffToDo As Action(Of IPlayProcessor, Mock(Of ITerminal), Mock(Of IInteractProcessor)), choices As String())
         WithTerminal(
             Sub(terminal)
-                Dim subject = New PlayProcessor(terminal.Object)
-                stuffToDo(subject, terminal)
+                Dim interactProcessor As New Mock(Of IInteractProcessor)
+                Dim subject = New PlayProcessor(terminal.Object, interactProcessor.Object)
+                stuffToDo(subject, terminal, interactProcessor)
+                interactProcessor.VerifyNoOtherCalls()
             End Sub, choices)
     End Sub
     <Fact>
     Sub instantiate()
         WithSubject(
-            Sub(subject, terminal)
+            Sub(subject, terminal, interact)
                 subject.ShouldNotBeNull
             End Sub, {})
     End Sub
     <Fact>
     Sub run()
         WithSubject(
-            Sub(subject, terminal)
+            Sub(subject, terminal, interact)
                 Dim stage As New Mock(Of IStage)
                 stage.SetupGet(Function(x) x.LeadActor.Location.Vessel).Returns((New Mock(Of IVessel)).Object)
                 subject.Run(stage.Object)
