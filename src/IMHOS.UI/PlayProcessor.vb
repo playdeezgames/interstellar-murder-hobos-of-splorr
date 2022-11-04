@@ -12,7 +12,7 @@
             Dim location As ILocation = lead.Location
             terminal.Clear()
             terminal.WriteLine($"Name: {lead.Name}")
-            terminal.WriteLine($"Name: {location.Name}")
+            terminal.WriteLine($"Location: {location.Name}")
             Select Case terminal.Choose("[olive]Now What?[/]", Constants.Prompts.AbandonGame)
                 Case Constants.Prompts.AbandonGame
                     done = ConfirmAbandon()
