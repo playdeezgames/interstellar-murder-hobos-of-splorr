@@ -3,9 +3,9 @@
 Public Class MainProcessor
     Implements IProcessor
     Private terminal As ITerminal
-    Private playProcessor As IStageProcessor
+    Private playProcessor As IPlayProcessor
     Private factory As IStageFactory
-    Sub New(terminal As ITerminal, playProcessor As IStageProcessor, factory As IStageFactory)
+    Sub New(terminal As ITerminal, playProcessor As IPlayProcessor, factory As IStageFactory)
         Me.terminal = terminal
         Me.playProcessor = playProcessor
         Me.factory = factory

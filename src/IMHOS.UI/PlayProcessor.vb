@@ -1,11 +1,11 @@
 ﻿Public Class PlayProcessor
-    Implements IStageProcessor
+    Implements IPlayProcessor
     Private terminal As ITerminal
     Sub New(terminal As ITerminal)
         Me.terminal = terminal
     End Sub
 
-    Public Sub Run(stage As IStage) Implements IStageProcessor.Run
+    Public Sub Run(stage As IStage) Implements IPlayProcessor.Run
         Dim done = False
         While Not done
             Dim lead As IActor = stage.LeadActor
@@ -23,6 +23,8 @@
             End If
             choices.Add(Constants.Prompts.AbandonGame)
             Select Case terminal.Choose("[olive]Now What?[/]", choices.ToArray)
+                Case Constants.Prompts.Interact
+
                 Case Constants.Prompts.AbandonGame
                     done = ConfirmAbandon()
             End Select

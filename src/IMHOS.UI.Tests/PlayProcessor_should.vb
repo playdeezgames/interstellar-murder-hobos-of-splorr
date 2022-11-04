@@ -1,5 +1,5 @@
 ﻿Public Class PlayProcessor_should
-    Private Sub WithSubject(stuffToDo As Action(Of IStageProcessor, Mock(Of ITerminal)), choices As String())
+    Private Sub WithSubject(stuffToDo As Action(Of IPlayProcessor, Mock(Of ITerminal)), choices As String())
         WithTerminal(
             Sub(terminal)
                 Dim subject = New PlayProcessor(terminal.Object)
