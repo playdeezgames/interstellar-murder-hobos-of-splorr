@@ -34,15 +34,6 @@ Public Class Location_should
             End Sub)
     End Sub
     <Fact>
-    Sub check_for_features()
-        WithSubject(
-            Sub(subject, data, id)
-                data.SetupGet(Function(x) x.Feature).Returns((New Mock(Of IFeatureData)).Object)
-                subject.HasFeatures.ShouldBeFalse
-                data.Verify(Function(x) x.Feature.CountForLocation(id))
-            End Sub)
-    End Sub
-    <Fact>
     Sub have_features()
         WithSubject(
             Sub(subject, data, id)
