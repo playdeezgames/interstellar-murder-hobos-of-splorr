@@ -18,6 +18,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasFeatures As Boolean Implements ILocation.HasFeatures
+        Get
+            Return data.Feature.CountForLocation(id) > 0
+        End Get
+    End Property
+
     Friend Shared Function FromId(data As IStageData, id As Guid?) As ILocation
         Return If(id.HasValue, New Location(data, id.Value), Nothing)
     End Function

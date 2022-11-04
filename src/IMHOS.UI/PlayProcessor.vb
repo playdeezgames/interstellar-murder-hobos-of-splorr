@@ -15,7 +15,12 @@
             terminal.WriteLine($"Name: {lead.Name}")
             terminal.WriteLine($"Location: {location.Name}")
             terminal.WriteLine($"Vessel: {vessel.Name}")
-            Select Case terminal.Choose("[olive]Now What?[/]", Constants.Prompts.AbandonGame)
+            Dim choices As New List(Of String)
+            If location.HasFeatures Then
+                choices.Add(Constants.Prompts.Interact)
+            End If
+            choices.Add(Constants.Prompts.AbandonGame)
+            Select Case terminal.Choose("[olive]Now What?[/]", choices.ToArray)
                 Case Constants.Prompts.AbandonGame
                     done = ConfirmAbandon()
             End Select
