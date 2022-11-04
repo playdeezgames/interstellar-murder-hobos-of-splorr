@@ -1,7 +1,7 @@
 ﻿Public Class LocationData
     Implements ILocationData
     Private ReadOnly table As New Dictionary(Of Guid, String)
-    Public Function Create(name As String) As Guid Implements ILocationData.Create
+    Public Function Create(name As String, vesselId As Guid) As Guid Implements ILocationData.Create
         Dim id = Guid.NewGuid
         table(id) = name
         Return id

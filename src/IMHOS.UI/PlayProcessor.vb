@@ -10,6 +10,7 @@
         While Not done
             Dim lead As IActor = stage.LeadActor
             Dim location As ILocation = lead.Location
+            Dim vessel As IVessel = location.Vessel
             terminal.Clear()
             terminal.WriteLine($"Name: {lead.Name}")
             terminal.WriteLine($"Location: {location.Name}")

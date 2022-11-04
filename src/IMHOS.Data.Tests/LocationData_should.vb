@@ -15,7 +15,8 @@
         WithSubject(
             Sub(subject)
                 Const name = "one"
-                subject.Create(name).ShouldNotBe(Guid.Empty)
+                Dim locationId = Guid.NewGuid
+                subject.Create(name, locationId).ShouldNotBe(Guid.Empty)
             End Sub)
     End Sub
     <Fact>

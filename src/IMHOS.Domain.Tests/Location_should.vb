@@ -24,4 +24,11 @@ Public Class Location_should
                 data.Verify(Function(x) x.Location.ReadName(id))
             End Sub)
     End Sub
+    <Fact>
+    Sub have_a_vessel()
+        WithSubject(
+            Sub(subject, data, id)
+                subject.Vessel.ShouldBeNull
+            End Sub)
+    End Sub
 End Class

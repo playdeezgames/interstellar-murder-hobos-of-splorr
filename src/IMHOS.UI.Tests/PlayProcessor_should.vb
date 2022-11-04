@@ -24,6 +24,7 @@
                 stage.VerifyGet(Function(x) x.LeadActor.Name)
                 stage.VerifyGet(Function(x) x.LeadActor.Location)
                 stage.VerifyGet(Function(x) x.LeadActor.Location.Name)
+                stage.VerifyGet(Function(x) x.LeadActor.Location.Vessel)
                 stage.VerifyGet(Function(x) x.LeadActor)
                 stage.VerifyNoOtherCalls()
 
