@@ -18,13 +18,14 @@
         WithSubject(
             Sub(subject, terminal)
                 Dim stage As New Mock(Of IStage)
-                stage.SetupGet(Function(x) x.LeadActor.Location).Returns((New Mock(Of ILocation)).Object)
+                stage.SetupGet(Function(x) x.LeadActor.Location.Vessel).Returns((New Mock(Of IVessel)).Object)
                 subject.Run(stage.Object)
 
                 stage.VerifyGet(Function(x) x.LeadActor.Name)
                 stage.VerifyGet(Function(x) x.LeadActor.Location)
                 stage.VerifyGet(Function(x) x.LeadActor.Location.Name)
                 stage.VerifyGet(Function(x) x.LeadActor.Location.Vessel)
+                stage.VerifyGet(Function(x) x.LeadActor.Location.Vessel.Name)
                 stage.VerifyGet(Function(x) x.LeadActor)
                 stage.VerifyNoOtherCalls()
 

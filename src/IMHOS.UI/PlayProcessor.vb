@@ -14,6 +14,7 @@
             terminal.Clear()
             terminal.WriteLine($"Name: {lead.Name}")
             terminal.WriteLine($"Location: {location.Name}")
+            terminal.WriteLine($"Vessel: {vessel.Name}")
             Select Case terminal.Choose("[olive]Now What?[/]", Constants.Prompts.AbandonGame)
                 Case Constants.Prompts.AbandonGame
                     done = ConfirmAbandon()

@@ -27,4 +27,12 @@
                 subject.ReadName(id).ShouldBeNull
             End Sub)
     End Sub
+    <Fact>
+    Sub read_vessel()
+        WithSubject(
+            Sub(subject)
+                Dim id = Guid.Empty
+                subject.ReadVessel(id).ShouldBeNull
+            End Sub)
+    End Sub
 End Class
