@@ -11,6 +11,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Verbs As IEnumerable(Of IVerb) Implements IFeature.Verbs
+        Get
+            Return Array.Empty(Of IVerb)
+        End Get
+    End Property
+
     Friend Shared Function FromId(data As IStageData, id As Guid?) As IFeature
         Return If(id.HasValue, New Feature(data, id.Value), Nothing)
     End Function

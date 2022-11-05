@@ -24,4 +24,11 @@ Public Class Feature_should
                 data.Verify(Function(x) x.Feature.ReadName(id))
             End Sub)
     End Sub
+    <Fact>
+    Sub have_verbs()
+        WithSubject(
+            Sub(subject, data, id)
+                subject.Verbs.ShouldBeEmpty
+            End Sub)
+    End Sub
 End Class
