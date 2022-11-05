@@ -1,12 +1,10 @@
-﻿Imports IMHOS.Data
-
-Public Class MainProcessor
+﻿Public Class MainProcessor
+    Inherits BaseProcessor
     Implements IMainProcessor
-    Private terminal As ITerminal
     Private playProcessor As IPlayProcessor
     Private factory As IStageFactory
     Sub New(terminal As ITerminal, playProcessor As IPlayProcessor, factory As IStageFactory)
-        Me.terminal = terminal
+        MyBase.New(terminal)
         Me.playProcessor = playProcessor
         Me.factory = factory
     End Sub

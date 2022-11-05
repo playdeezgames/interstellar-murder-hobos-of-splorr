@@ -1,7 +1,7 @@
 Module Program
     Sub Main(args As String())
         Dim terminal As ITerminal = New Terminal()
-        Dim interactProcessor As IInteractProcessor = New InteractProcessor
+        Dim interactProcessor As IInteractProcessor = New InteractProcessor(terminal)
         Dim playProcessor As IPlayProcessor = New PlayProcessor(terminal, interactProcessor)
         Dim data As IStageData = New StageData
         Dim factory As IStageFactory = New StageFactory(data)

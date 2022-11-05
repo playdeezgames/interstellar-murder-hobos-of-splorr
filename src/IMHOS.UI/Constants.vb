@@ -2,6 +2,7 @@
     Public Class Prompts
         Public Const AbandonGame = "Abandon Game"
         Public Const Interact = "Interact"
+        Public Const NeverMind = "Never Mind"
         Public Const No = "No"
         Public Const Ok = "Ok"
         Public Const Quit = "Quit"

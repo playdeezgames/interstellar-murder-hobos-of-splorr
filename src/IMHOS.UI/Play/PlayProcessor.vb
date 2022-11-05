@@ -1,9 +1,9 @@
 ﻿Public Class PlayProcessor
+    Inherits BaseProcessor
     Implements IPlayProcessor
-    Private terminal As ITerminal
     Private interactProcessor As IInteractProcessor
     Sub New(terminal As ITerminal, interactProcessor As IInteractProcessor)
-        Me.terminal = terminal
+        MyBase.New(terminal)
         Me.interactProcessor = interactProcessor
     End Sub
 
