@@ -26,7 +26,7 @@
             choices.Add(Constants.Prompts.AbandonGame)
             Select Case terminal.Choose("[olive]Now What?[/]", choices.ToArray)
                 Case Constants.Prompts.Interact
-
+                    interactProcessor.Run(stage)
                 Case Constants.Prompts.AbandonGame
                     done = ConfirmAbandon()
             End Select
